@@ -1,0 +1,2552 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "country": "Sri Lanka",
+    "currency": "LKR",
+    "lastUpdated": "2025-02-04"
+  },
+  "travelStyles": ["Adventure", "Cultural", "Spiritual", "Nature/Wildlife"],
+  "startLocations": ["Colombo Port", "Galle Port", "Kandy", "Anuradhapura"],
+  "startLocationCoordinates": {
+    "Colombo Port": [6.9497, 79.8428],
+    "Galle Port": [6.0328, 80.2164],
+    "Kandy": [7.2906, 80.6337],
+    "Anuradhapura": [8.3114, 80.4037]
+  },
+  "budgetRanges": {
+    "budget": { "min": 25000, "max": 50000, "label": "Budget" },
+    "moderate": { "min": 50001, "max": 100000, "label": "Moderate" },
+    "comfort": { "min": 100001, "max": 200000, "label": "Comfort" },
+    "luxury": { "min": 200001, "max": 500000, "label": "Luxury" }
+  },
+  "locations": {
+    "cultural": [
+      {
+        "id": "sigiriya",
+        "name": "Sigiriya Rock Fortress",
+        "district": "Matale",
+        "timeRequired": 4,
+        "entranceFee": 5580,
+        "description": "Ancient rock fortress with frescoes",
+        "coordinates": [7.957, 80.7603]
+      },
+      {
+        "id": "polonnaruwa",
+        "name": "Polonnaruwa Ancient City",
+        "district": "Polonnaruwa",
+        "timeRequired": 4,
+        "entranceFee": 3850,
+        "description": "Medieval capital ruins",
+        "coordinates": [7.9403, 81.0011]
+      },
+      {
+        "id": "dambulla",
+        "name": "Dambulla Cave Temple",
+        "district": "Matale",
+        "timeRequired": 2,
+        "entranceFee": 2200,
+        "description": "Cave temple complex with Buddha statues",
+        "coordinates": [7.8675, 80.6517]
+      },
+      {
+        "id": "kandy_temple",
+        "name": "Temple of the Tooth",
+        "district": "Kandy",
+        "timeRequired": 2,
+        "entranceFee": 2000,
+        "description": "Sacred Buddhist temple",
+        "coordinates": [7.2936, 80.6413]
+      },
+      {
+        "id": "galle_fort",
+        "name": "Galle Fort",
+        "district": "Galle",
+        "timeRequired": 3,
+        "entranceFee": 0,
+        "description": "UNESCO Dutch colonial fort",
+        "coordinates": [6.027, 80.217]
+      },
+      {
+        "id": "anuradhapura_city",
+        "name": "Anuradhapura Sacred City",
+        "district": "Anuradhapura",
+        "timeRequired": 6,
+        "entranceFee": 3850,
+        "description": "Ancient capital with stupas",
+        "coordinates": [8.3114, 80.4037]
+      },
+      {
+        "id": "colombo_museum",
+        "name": "Colombo National Museum",
+        "district": "Colombo",
+        "timeRequired": 2,
+        "entranceFee": 600,
+        "description": "Sri Lanka's largest museum",
+        "coordinates": [6.9271, 79.8612]
+      },
+      {
+        "id": "independence_square",
+        "name": "Independence Square",
+        "district": "Colombo",
+        "timeRequired": 1,
+        "entranceFee": 0,
+        "description": "Historic monument",
+        "coordinates": [6.9039, 79.8651]
+      },
+      {
+        "id": "gangarama",
+        "name": "Gangaramaya Temple",
+        "district": "Colombo",
+        "timeRequired": 2,
+        "entranceFee": 500,
+        "description": "Buddhist temple with museum",
+        "coordinates": [6.9167, 79.8564]
+      },
+      {
+        "id": "yapahuwa",
+        "name": "Yapahuwa Rock Fortress",
+        "district": "Kurunegala",
+        "timeRequired": 3,
+        "entranceFee": 1100,
+        "description": "Medieval rock fortress",
+        "coordinates": [7.8167, 80.3167]
+      }
+    ],
+    "spiritual": [
+      {
+        "id": "adam_peak",
+        "name": "Adam's Peak (Sri Pada)",
+        "district": "Ratnapura",
+        "timeRequired": 8,
+        "entranceFee": 0,
+        "description": "Sacred pilgrimage mountain",
+        "coordinates": [6.8096, 80.4994]
+      },
+      {
+        "id": "kataragama",
+        "name": "Kataragama Temple",
+        "district": "Monaragala",
+        "timeRequired": 3,
+        "entranceFee": 0,
+        "description": "Multi-faith pilgrimage site",
+        "coordinates": [6.4167, 81.3333]
+      },
+      {
+        "id": "mihintale",
+        "name": "Mihintale",
+        "district": "Anuradhapura",
+        "timeRequired": 3,
+        "entranceFee": 550,
+        "description": "Birthplace of Buddhism in Sri Lanka",
+        "coordinates": [8.35, 80.5167]
+      },
+      {
+        "id": "kelaniya",
+        "name": "Kelaniya Raja Maha Viharaya",
+        "district": "Colombo",
+        "timeRequired": 2,
+        "entranceFee": 0,
+        "description": "Historic Buddhist temple",
+        "coordinates": [6.9614, 79.9181]
+      },
+      {
+        "id": "sri_maha_bodhi",
+        "name": "Sri Maha Bodhi",
+        "district": "Anuradhapura",
+        "timeRequired": 2,
+        "entranceFee": 0,
+        "description": "Sacred Bo tree",
+        "coordinates": [8.3475, 80.3964]
+      },
+      {
+        "id": "nallur",
+        "name": "Nallur Kandaswamy Temple",
+        "district": "Jaffna",
+        "timeRequired": 2,
+        "entranceFee": 0,
+        "description": "Famous Hindu temple",
+        "coordinates": [9.6667, 80.0167]
+      },
+      {
+        "id": "nagadeepa",
+        "name": "Nagadeepa Purana Viharaya",
+        "district": "Jaffna",
+        "timeRequired": 3,
+        "entranceFee": 0,
+        "description": "Island Buddhist temple",
+        "coordinates": [9.8, 79.8833]
+      },
+      {
+        "id": "ruwanwelisaya",
+        "name": "Ruwanwelisaya Stupa",
+        "district": "Anuradhapura",
+        "timeRequired": 2,
+        "entranceFee": 0,
+        "description": "Sacred Buddhist stupa",
+        "coordinates": [8.35, 80.3958]
+      },
+      {
+        "id": "thirukoneshwaram",
+        "name": "Koneswaram Temple",
+        "district": "Trincomalee",
+        "timeRequired": 2,
+        "entranceFee": 0,
+        "description": "Ancient Hindu temple on cliff",
+        "coordinates": [8.5833, 81.2333]
+      }
+    ],
+    "adventure": [
+      {
+        "id": "ella_rock",
+        "name": "Ella Rock",
+        "district": "Badulla",
+        "timeRequired": 5,
+        "entranceFee": 0,
+        "description": "Scenic hiking trail",
+        "coordinates": [6.8667, 81.0458]
+      },
+      {
+        "id": "kitulgala",
+        "name": "Kitulgala White Water Rafting",
+        "district": "Kegalle",
+        "timeRequired": 4,
+        "entranceFee": 8000,
+        "description": "Adventure rafting",
+        "coordinates": [6.9892, 80.4147]
+      },
+      {
+        "id": "knuckles",
+        "name": "Knuckles Mountain Range",
+        "district": "Matale",
+        "timeRequired": 6,
+        "entranceFee": 1100,
+        "description": "Trekking and camping",
+        "coordinates": [7.45, 80.7833]
+      },
+      {
+        "id": "sinharaja",
+        "name": "Sinharaja Rain Forest",
+        "district": "Ratnapura",
+        "timeRequired": 5,
+        "entranceFee": 1430,
+        "description": "Rainforest trekking",
+        "coordinates": [6.4167, 80.45]
+      },
+      {
+        "id": "arugam_bay",
+        "name": "Arugam Bay Surfing",
+        "district": "Ampara",
+        "timeRequired": 4,
+        "entranceFee": 0,
+        "description": "World-class surfing spot",
+        "coordinates": [6.8403, 81.8361]
+      },
+      {
+        "id": "horton_plains",
+        "name": "Horton Plains & World's End",
+        "district": "Nuwara Eliya",
+        "timeRequired": 5,
+        "entranceFee": 2750,
+        "description": "Highland plateau hiking",
+        "coordinates": [6.8094, 80.7994]
+      },
+      {
+        "id": "mirissa_diving",
+        "name": "Mirissa Diving",
+        "district": "Matara",
+        "timeRequired": 4,
+        "entranceFee": 12000,
+        "description": "Scuba diving experience",
+        "coordinates": [5.9483, 80.4567]
+      },
+      {
+        "id": "hikkaduwa_snorkeling",
+        "name": "Hikkaduwa Snorkeling",
+        "district": "Galle",
+        "timeRequired": 3,
+        "entranceFee": 3000,
+        "description": "Coral reef snorkeling",
+        "coordinates": [6.1403, 80.1017]
+      },
+      {
+        "id": "bentota_watersports",
+        "name": "Bentota Water Sports",
+        "district": "Galle",
+        "timeRequired": 4,
+        "entranceFee": 5000,
+        "description": "Jet skiing, banana boat",
+        "coordinates": [6.4228, 79.9969]
+      },
+      {
+        "id": "little_adams",
+        "name": "Little Adam's Peak",
+        "district": "Badulla",
+        "timeRequired": 3,
+        "entranceFee": 0,
+        "description": "Easy scenic hike",
+        "coordinates": [6.8667, 81.05]
+      }
+    ],
+    "nature_wildlife": [
+      {
+        "id": "yala",
+        "name": "Yala National Park",
+        "district": "Hambantota",
+        "timeRequired": 6,
+        "entranceFee": 5500,
+        "description": "Leopard safari",
+        "coordinates": [6.3754, 81.5125]
+      },
+      {
+        "id": "udawalawe",
+        "name": "Udawalawe National Park",
+        "district": "Monaragala",
+        "timeRequired": 4,
+        "entranceFee": 4400,
+        "description": "Elephant safari",
+        "coordinates": [6.4386, 80.8867]
+      },
+      {
+        "id": "minneriya",
+        "name": "Minneriya National Park",
+        "district": "Polonnaruwa",
+        "timeRequired": 4,
+        "entranceFee": 4400,
+        "description": "Elephant gathering",
+        "coordinates": [8.0333, 80.9]
+      },
+      {
+        "id": "wilpattu",
+        "name": "Wilpattu National Park",
+        "district": "Anuradhapura",
+        "timeRequired": 5,
+        "entranceFee": 4400,
+        "description": "Largest national park",
+        "coordinates": [8.4, 80.0333]
+      },
+      {
+        "id": "mirissa_whales",
+        "name": "Mirissa Whale Watching",
+        "district": "Matara",
+        "timeRequired": 5,
+        "entranceFee": 8500,
+        "description": "Blue whale watching",
+        "coordinates": [5.9483, 80.4567]
+      },
+      {
+        "id": "pinnawala",
+        "name": "Pinnawala Elephant Orphanage",
+        "district": "Kegalle",
+        "timeRequired": 3,
+        "entranceFee": 3300,
+        "description": "Elephant sanctuary",
+        "coordinates": [7.3006, 80.3847]
+      },
+      {
+        "id": "turtle_hatchery",
+        "name": "Kosgoda Turtle Hatchery",
+        "district": "Galle",
+        "timeRequired": 2,
+        "entranceFee": 1000,
+        "description": "Sea turtle conservation",
+        "coordinates": [6.3333, 80.0333]
+      },
+      {
+        "id": "bundala",
+        "name": "Bundala National Park",
+        "district": "Hambantota",
+        "timeRequired": 4,
+        "entranceFee": 4400,
+        "description": "Bird watching paradise",
+        "coordinates": [6.2, 81.2167]
+      },
+      {
+        "id": "peradeniya",
+        "name": "Peradeniya Botanical Gardens",
+        "district": "Kandy",
+        "timeRequired": 3,
+        "entranceFee": 2200,
+        "description": "Historic botanical garden",
+        "coordinates": [7.2692, 80.5953]
+      },
+      {
+        "id": "hakgala",
+        "name": "Hakgala Botanical Gardens",
+        "district": "Nuwara Eliya",
+        "timeRequired": 2,
+        "entranceFee": 1650,
+        "description": "Highland gardens",
+        "coordinates": [6.9258, 80.8167]
+      }
+    ]
+  },
+  "travelCombinations": [
+    {
+      "id": 1,
+      "travelStyles": ["Cultural"],
+      "days": 1,
+      "startLocation": "Colombo Port",
+      "budget": 25000,
+      "budgetCategory": "Budget",
+      "itinerary": {
+        "day1": {
+          "locations": [
+            "Colombo National Museum",
+            "Gangaramaya Temple",
+            "Independence Square"
+          ],
+          "description": "Explore Colombo's cultural highlights",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Tuk-tuk/Taxi"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 1100,
+        "meals": 3000,
+        "transport": 5000,
+        "total": 9100
+      },
+      "highlights": [
+        "Colonial architecture",
+        "Buddhist heritage",
+        "City history"
+      ]
+    },
+    {
+      "id": 2,
+      "travelStyles": ["Cultural"],
+      "days": 1,
+      "startLocation": "Colombo Port",
+      "budget": 50000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": [
+            "Colombo National Museum",
+            "Gangaramaya Temple",
+            "Kelaniya Raja Maha Viharaya"
+          ],
+          "description": "Premium Colombo cultural tour with guide",
+          "meals": "Hotel restaurants",
+          "accommodation": null,
+          "transport": "Private car with driver"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 1100,
+        "meals": 8000,
+        "transport": 15000,
+        "guide": 10000,
+        "total": 34100
+      },
+      "highlights": [
+        "Professional guide",
+        "Air-conditioned transport",
+        "Fine dining"
+      ]
+    },
+    {
+      "id": 3,
+      "travelStyles": ["Cultural"],
+      "days": 1,
+      "startLocation": "Galle Port",
+      "budget": 25000,
+      "budgetCategory": "Budget",
+      "itinerary": {
+        "day1": {
+          "locations": ["Galle Fort"],
+          "description": "Walk through UNESCO World Heritage Galle Fort",
+          "meals": "Local cafes in fort",
+          "accommodation": null,
+          "transport": "Walking"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 0,
+        "meals": 2500,
+        "transport": 1000,
+        "total": 3500
+      },
+      "highlights": [
+        "Dutch colonial architecture",
+        "Maritime museum",
+        "Lighthouse"
+      ]
+    },
+    {
+      "id": 4,
+      "travelStyles": ["Cultural"],
+      "days": 1,
+      "startLocation": "Kandy",
+      "budget": 35000,
+      "budgetCategory": "Budget",
+      "itinerary": {
+        "day1": {
+          "locations": ["Temple of the Tooth", "Peradeniya Botanical Gardens"],
+          "description": "Explore Kandy's sacred temple and botanical gardens",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Tuk-tuk"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 4200,
+        "meals": 3000,
+        "transport": 3000,
+        "total": 10200
+      },
+      "highlights": ["Sacred relic", "Royal gardens", "Hill country views"]
+    },
+    {
+      "id": 5,
+      "travelStyles": ["Cultural"],
+      "days": 1,
+      "startLocation": "Anuradhapura",
+      "budget": 40000,
+      "budgetCategory": "Budget",
+      "itinerary": {
+        "day1": {
+          "locations": [
+            "Anuradhapura Sacred City",
+            "Sri Maha Bodhi",
+            "Ruwanwelisaya Stupa"
+          ],
+          "description": "Ancient capital exploration",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Bicycle/Tuk-tuk"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 3850,
+        "meals": 2500,
+        "transport": 3000,
+        "total": 9350
+      },
+      "highlights": ["Ancient ruins", "Sacred Bo tree", "Buddhist stupas"]
+    },
+    {
+      "id": 6,
+      "travelStyles": ["Cultural", "Spiritual"],
+      "days": 2,
+      "startLocation": "Galle Port",
+      "budget": 100000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": ["Galle Fort", "Kosgoda Turtle Hatchery"],
+          "description": "Coastal heritage and conservation",
+          "meals": "Hotel restaurant",
+          "accommodation": "3-star hotel in Galle",
+          "transport": "Private car"
+        },
+        "day2": {
+          "locations": ["Kataragama Temple"],
+          "description": "Sacred pilgrimage to Kataragama",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 1000,
+        "meals": 12000,
+        "transport": 25000,
+        "accommodation": 15000,
+        "total": 53000
+      },
+      "highlights": [
+        "Colonial heritage",
+        "Multi-faith worship",
+        "Southern coast"
+      ]
+    },
+    {
+      "id": 7,
+      "travelStyles": ["Adventure"],
+      "days": 1,
+      "startLocation": "Colombo Port",
+      "budget": 50000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": ["Kitulgala White Water Rafting"],
+          "description": "Day trip to Kitulgala for white water rafting",
+          "meals": "Packed lunch",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 8000,
+        "meals": 3000,
+        "transport": 15000,
+        "total": 26000
+      },
+      "highlights": [
+        "Grade 3-4 rapids",
+        "Scenic river",
+        "Bridge on River Kwai filming location"
+      ]
+    },
+    {
+      "id": 8,
+      "travelStyles": ["Adventure"],
+      "days": 2,
+      "startLocation": "Colombo Port",
+      "budget": 75000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": ["Kitulgala White Water Rafting"],
+          "description": "White water rafting adventure",
+          "meals": "Local restaurants",
+          "accommodation": "Budget lodge in Kitulgala",
+          "transport": "Private car"
+        },
+        "day2": {
+          "locations": ["Pinnawala Elephant Orphanage"],
+          "description": "Visit elephant sanctuary on return",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 11300,
+        "meals": 6000,
+        "transport": 18000,
+        "accommodation": 8000,
+        "total": 43300
+      },
+      "highlights": [
+        "Rafting adventure",
+        "Elephant bathing",
+        "Nature experience"
+      ]
+    },
+    {
+      "id": 9,
+      "travelStyles": ["Nature/Wildlife"],
+      "days": 1,
+      "startLocation": "Colombo Port",
+      "budget": 40000,
+      "budgetCategory": "Budget",
+      "itinerary": {
+        "day1": {
+          "locations": ["Pinnawala Elephant Orphanage"],
+          "description": "Day trip to see elephants",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Bus/Train"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 3300,
+        "meals": 2500,
+        "transport": 2000,
+        "total": 7800
+      },
+      "highlights": ["Baby elephants", "Feeding time", "River bathing"]
+    },
+    {
+      "id": 10,
+      "travelStyles": ["Nature/Wildlife"],
+      "days": 2,
+      "startLocation": "Galle Port",
+      "budget": 80000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": ["Mirissa Whale Watching"],
+          "description": "Early morning whale watching",
+          "meals": "Hotel restaurant",
+          "accommodation": "Beach hotel in Mirissa",
+          "transport": "Private car"
+        },
+        "day2": {
+          "locations": ["Turtle Hatchery", "Hikkaduwa Snorkeling"],
+          "description": "Coastal wildlife experience",
+          "meals": "Beach restaurants",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 12500,
+        "meals": 8000,
+        "transport": 12000,
+        "accommodation": 12000,
+        "total": 44500
+      },
+      "highlights": ["Blue whales", "Sea turtles", "Coral reefs"]
+    },
+    {
+      "id": 11,
+      "travelStyles": ["Spiritual"],
+      "days": 2,
+      "startLocation": "Kandy",
+      "budget": 60000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": ["Temple of the Tooth"],
+          "description": "Visit sacred temple, evening puja ceremony",
+          "meals": "Vegetarian restaurants",
+          "accommodation": "Pilgrim rest house",
+          "transport": "Walking/Tuk-tuk"
+        },
+        "day2": {
+          "locations": ["Adam's Peak (Sri Pada)"],
+          "description": "Night climb to sacred peak for sunrise",
+          "meals": "Light meals",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 2000,
+        "meals": 5000,
+        "transport": 15000,
+        "accommodation": 5000,
+        "total": 27000
+      },
+      "highlights": [
+        "Sacred footprint",
+        "Sunrise pilgrimage",
+        "Spiritual experience"
+      ]
+    },
+    {
+      "id": 12,
+      "travelStyles": ["Spiritual"],
+      "days": 1,
+      "startLocation": "Anuradhapura",
+      "budget": 30000,
+      "budgetCategory": "Budget",
+      "itinerary": {
+        "day1": {
+          "locations": ["Sri Maha Bodhi", "Ruwanwelisaya Stupa", "Mihintale"],
+          "description": "Sacred Buddhist pilgrimage circuit",
+          "meals": "Dana (temple food)",
+          "accommodation": null,
+          "transport": "Bicycle"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 550,
+        "meals": 1500,
+        "transport": 1000,
+        "total": 3050
+      },
+      "highlights": [
+        "Oldest documented tree",
+        "Birthplace of Buddhism",
+        "Ancient stupas"
+      ]
+    },
+    {
+      "id": 13,
+      "travelStyles": ["Cultural", "Adventure"],
+      "days": 3,
+      "startLocation": "Colombo Port",
+      "budget": 150000,
+      "budgetCategory": "Comfort",
+      "itinerary": {
+        "day1": {
+          "locations": ["Sigiriya Rock Fortress", "Dambulla Cave Temple"],
+          "description": "Cultural triangle highlights",
+          "meals": "Hotel restaurant",
+          "accommodation": "4-star hotel in Sigiriya",
+          "transport": "Private car with A/C"
+        },
+        "day2": {
+          "locations": ["Knuckles Mountain Range"],
+          "description": "Trekking in mountain wilderness",
+          "meals": "Packed lunch",
+          "accommodation": "Eco lodge in Knuckles",
+          "transport": "4x4 vehicle"
+        },
+        "day3": {
+          "locations": [
+            "Kandy Temple of the Tooth",
+            "Peradeniya Botanical Gardens"
+          ],
+          "description": "Kandy cultural experience",
+          "meals": "Fine dining",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 12530,
+        "meals": 18000,
+        "transport": 35000,
+        "accommodation": 35000,
+        "total": 100530
+      },
+      "highlights": [
+        "Ancient rock fortress",
+        "Mountain trekking",
+        "Royal heritage"
+      ]
+    },
+    {
+      "id": 14,
+      "travelStyles": ["Adventure", "Nature/Wildlife"],
+      "days": 3,
+      "startLocation": "Galle Port",
+      "budget": 120000,
+      "budgetCategory": "Comfort",
+      "itinerary": {
+        "day1": {
+          "locations": ["Hikkaduwa Snorkeling", "Bentota Water Sports"],
+          "description": "Beach adventure activities",
+          "meals": "Beach restaurants",
+          "accommodation": "Beach resort",
+          "transport": "Private car"
+        },
+        "day2": {
+          "locations": ["Udawalawe National Park"],
+          "description": "Elephant safari adventure",
+          "meals": "Safari lodge",
+          "accommodation": "Safari lodge",
+          "transport": "Safari jeep"
+        },
+        "day3": {
+          "locations": ["Sinharaja Rain Forest"],
+          "description": "Rainforest trekking",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "4x4 vehicle"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 12830,
+        "meals": 15000,
+        "transport": 30000,
+        "accommodation": 28000,
+        "total": 85830
+      },
+      "highlights": ["Water sports", "Wild elephants", "Endemic wildlife"]
+    },
+    {
+      "id": 15,
+      "travelStyles": ["Cultural", "Spiritual", "Nature/Wildlife"],
+      "days": 5,
+      "startLocation": "Colombo Port",
+      "budget": 250000,
+      "budgetCategory": "Comfort",
+      "itinerary": {
+        "day1": {
+          "locations": [
+            "Colombo National Museum",
+            "Gangaramaya Temple",
+            "Kelaniya Raja Maha Viharaya"
+          ],
+          "description": "Colombo cultural and spiritual start",
+          "meals": "Hotel restaurant",
+          "accommodation": "4-star hotel Colombo",
+          "transport": "Private car"
+        },
+        "day2": {
+          "locations": ["Sigiriya Rock Fortress", "Dambulla Cave Temple"],
+          "description": "Cultural triangle exploration",
+          "meals": "Hotel restaurant",
+          "accommodation": "4-star hotel Sigiriya",
+          "transport": "Private car"
+        },
+        "day3": {
+          "locations": ["Minneriya National Park", "Polonnaruwa Ancient City"],
+          "description": "Safari and ancient ruins",
+          "meals": "Hotel restaurant",
+          "accommodation": "4-star hotel Polonnaruwa",
+          "transport": "Safari jeep/Private car"
+        },
+        "day4": {
+          "locations": [
+            "Kandy Temple of the Tooth",
+            "Peradeniya Botanical Gardens"
+          ],
+          "description": "Hill country heritage",
+          "meals": "Fine dining",
+          "accommodation": "Heritage hotel Kandy",
+          "transport": "Private car"
+        },
+        "day5": {
+          "locations": ["Pinnawala Elephant Orphanage"],
+          "description": "Wildlife sanctuary visit before departure",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 22480,
+        "meals": 40000,
+        "transport": 50000,
+        "accommodation": 80000,
+        "total": 192480
+      },
+      "highlights": [
+        "Complete cultural experience",
+        "Wildlife safari",
+        "Sacred temples"
+      ]
+    },
+    {
+      "id": 16,
+      "travelStyles": ["Adventure"],
+      "days": 4,
+      "startLocation": "Kandy",
+      "budget": 100000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": ["Knuckles Mountain Range"],
+          "description": "Full day trekking in Knuckles",
+          "meals": "Packed lunch",
+          "accommodation": "Camping in Knuckles",
+          "transport": "4x4 vehicle"
+        },
+        "day2": {
+          "locations": ["Horton Plains & World's End"],
+          "description": "Highland plateau hike",
+          "meals": "Hotel restaurant",
+          "accommodation": "Hill country hotel",
+          "transport": "Private car"
+        },
+        "day3": {
+          "locations": ["Ella Rock", "Little Adam's Peak"],
+          "description": "Ella adventure hiking",
+          "meals": "Cafes in Ella",
+          "accommodation": "Guesthouse in Ella",
+          "transport": "Train to Ella"
+        },
+        "day4": {
+          "locations": ["Kitulgala White Water Rafting"],
+          "description": "Rafting adventure",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 11850,
+        "meals": 12000,
+        "transport": 25000,
+        "accommodation": 18000,
+        "total": 66850
+      },
+      "highlights": [
+        "Mountain trekking",
+        "World's End viewpoint",
+        "White water rafting"
+      ]
+    },
+    {
+      "id": 17,
+      "travelStyles": ["Nature/Wildlife"],
+      "days": 3,
+      "startLocation": "Anuradhapura",
+      "budget": 90000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": ["Wilpattu National Park"],
+          "description": "Leopard safari in Sri Lanka's largest park",
+          "meals": "Safari lodge",
+          "accommodation": "Safari lodge",
+          "transport": "Safari jeep"
+        },
+        "day2": {
+          "locations": ["Minneriya National Park"],
+          "description": "Elephant gathering safari",
+          "meals": "Hotel restaurant",
+          "accommodation": "Hotel near Habarana",
+          "transport": "Safari jeep"
+        },
+        "day3": {
+          "locations": ["Peradeniya Botanical Gardens"],
+          "description": "Botanical gardens tour",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 11000,
+        "meals": 12000,
+        "transport": 25000,
+        "accommodation": 20000,
+        "total": 68000
+      },
+      "highlights": ["Leopards", "Elephant herds", "Endemic plants"]
+    },
+    {
+      "id": 18,
+      "travelStyles": ["Cultural", "Spiritual"],
+      "days": 4,
+      "startLocation": "Anuradhapura",
+      "budget": 120000,
+      "budgetCategory": "Comfort",
+      "itinerary": {
+        "day1": {
+          "locations": [
+            "Anuradhapura Sacred City",
+            "Sri Maha Bodhi",
+            "Ruwanwelisaya Stupa"
+          ],
+          "description": "Full day in ancient capital",
+          "meals": "Hotel restaurant",
+          "accommodation": "Heritage hotel",
+          "transport": "Bicycle/Car"
+        },
+        "day2": {
+          "locations": ["Mihintale", "Yapahuwa Rock Fortress"],
+          "description": "Spiritual and cultural sites",
+          "meals": "Local restaurants",
+          "accommodation": "Hotel in Dambulla",
+          "transport": "Private car"
+        },
+        "day3": {
+          "locations": ["Sigiriya Rock Fortress", "Dambulla Cave Temple"],
+          "description": "Cultural triangle icons",
+          "meals": "Hotel restaurant",
+          "accommodation": "4-star hotel",
+          "transport": "Private car"
+        },
+        "day4": {
+          "locations": ["Polonnaruwa Ancient City"],
+          "description": "Medieval capital exploration",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 14930,
+        "meals": 16000,
+        "transport": 30000,
+        "accommodation": 35000,
+        "total": 95930
+      },
+      "highlights": ["UNESCO sites", "Ancient capitals", "Buddhist heritage"]
+    },
+    {
+      "id": 19,
+      "travelStyles": ["Adventure", "Cultural"],
+      "days": 2,
+      "startLocation": "Galle Port",
+      "budget": 80000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": ["Galle Fort", "Hikkaduwa Snorkeling"],
+          "description": "Heritage and ocean adventure",
+          "meals": "Seafood restaurants",
+          "accommodation": "Beach hotel",
+          "transport": "Private car"
+        },
+        "day2": {
+          "locations": ["Sinharaja Rain Forest"],
+          "description": "Rainforest adventure trek",
+          "meals": "Packed lunch",
+          "accommodation": null,
+          "transport": "4x4 vehicle"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 4430,
+        "meals": 10000,
+        "transport": 20000,
+        "accommodation": 15000,
+        "total": 49430
+      },
+      "highlights": ["Dutch fort", "Coral reefs", "Rainforest biodiversity"]
+    },
+    {
+      "id": 20,
+      "travelStyles": ["Spiritual", "Nature/Wildlife"],
+      "days": 3,
+      "startLocation": "Kandy",
+      "budget": 100000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": ["Temple of the Tooth", "Peradeniya Botanical Gardens"],
+          "description": "Kandy spiritual and nature",
+          "meals": "Hotel restaurant",
+          "accommodation": "Hotel in Kandy",
+          "transport": "Tuk-tuk"
+        },
+        "day2": {
+          "locations": ["Adam's Peak (Sri Pada)"],
+          "description": "Night pilgrimage climb",
+          "meals": "Light meals",
+          "accommodation": "Rest house near Adam's Peak",
+          "transport": "Private car"
+        },
+        "day3": {
+          "locations": ["Udawalawe National Park"],
+          "description": "Elephant safari",
+          "meals": "Safari lodge",
+          "accommodation": null,
+          "transport": "Safari jeep"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 8600,
+        "meals": 12000,
+        "transport": 28000,
+        "accommodation": 18000,
+        "total": 66600
+      },
+      "highlights": [
+        "Sacred peak sunrise",
+        "Wild elephants",
+        "Botanical beauty"
+      ]
+    },
+    {
+      "id": 21,
+      "travelStyles": ["Cultural"],
+      "days": 2,
+      "startLocation": "Colombo Port",
+      "budget": 60000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": ["Sigiriya Rock Fortress", "Dambulla Cave Temple"],
+          "description": "Day trip to cultural triangle",
+          "meals": "Hotel restaurant",
+          "accommodation": "3-star hotel in Sigiriya",
+          "transport": "Private car"
+        },
+        "day2": {
+          "locations": ["Polonnaruwa Ancient City"],
+          "description": "Ancient capital exploration",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 11630,
+        "meals": 8000,
+        "transport": 18000,
+        "accommodation": 10000,
+        "total": 47630
+      },
+      "highlights": ["Rock fortress", "Cave paintings", "Ancient ruins"]
+    },
+    {
+      "id": 22,
+      "travelStyles": ["Adventure", "Nature/Wildlife"],
+      "days": 5,
+      "startLocation": "Colombo Port",
+      "budget": 200000,
+      "budgetCategory": "Comfort",
+      "itinerary": {
+        "day1": {
+          "locations": ["Kitulgala White Water Rafting"],
+          "description": "Start with rafting adventure",
+          "meals": "Adventure lodge",
+          "accommodation": "Eco lodge Kitulgala",
+          "transport": "Private car"
+        },
+        "day2": {
+          "locations": ["Horton Plains & World's End"],
+          "description": "Highland plateau trek",
+          "meals": "Hotel restaurant",
+          "accommodation": "Hill country hotel",
+          "transport": "Private car"
+        },
+        "day3": {
+          "locations": ["Ella Rock", "Little Adam's Peak"],
+          "description": "Ella hiking adventures",
+          "meals": "Cafes",
+          "accommodation": "Boutique hotel Ella",
+          "transport": "Train"
+        },
+        "day4": {
+          "locations": ["Yala National Park"],
+          "description": "Leopard safari",
+          "meals": "Safari lodge",
+          "accommodation": "Safari lodge",
+          "transport": "Safari jeep"
+        },
+        "day5": {
+          "locations": ["Mirissa Whale Watching", "Mirissa Diving"],
+          "description": "Ocean adventures",
+          "meals": "Beach restaurants",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 34250,
+        "meals": 25000,
+        "transport": 45000,
+        "accommodation": 50000,
+        "total": 154250
+      },
+      "highlights": ["Rafting", "Mountain hiking", "Safari", "Marine life"]
+    },
+    {
+      "id": 23,
+      "travelStyles": ["Cultural", "Spiritual", "Adventure", "Nature/Wildlife"],
+      "days": 7,
+      "startLocation": "Colombo Port",
+      "budget": 350000,
+      "budgetCategory": "Luxury",
+      "itinerary": {
+        "day1": {
+          "locations": ["Colombo National Museum", "Gangaramaya Temple"],
+          "description": "Colombo introduction",
+          "meals": "5-star restaurant",
+          "accommodation": "5-star hotel Colombo",
+          "transport": "Private luxury car"
+        },
+        "day2": {
+          "locations": ["Sigiriya Rock Fortress", "Dambulla Cave Temple"],
+          "description": "Cultural triangle luxury tour",
+          "meals": "Fine dining",
+          "accommodation": "Luxury resort Sigiriya",
+          "transport": "Private car with guide"
+        },
+        "day3": {
+          "locations": ["Minneriya National Park", "Polonnaruwa Ancient City"],
+          "description": "Safari and history",
+          "meals": "Resort restaurant",
+          "accommodation": "Luxury eco lodge",
+          "transport": "Safari jeep"
+        },
+        "day4": {
+          "locations": [
+            "Kandy Temple of the Tooth",
+            "Peradeniya Botanical Gardens"
+          ],
+          "description": "Royal city experience",
+          "meals": "Fine dining",
+          "accommodation": "Heritage luxury hotel",
+          "transport": "Private car"
+        },
+        "day5": {
+          "locations": [
+            "Horton Plains & World's End",
+            "Hakgala Botanical Gardens"
+          ],
+          "description": "Highland adventure",
+          "meals": "Hill country restaurant",
+          "accommodation": "Tea estate bungalow",
+          "transport": "Private car"
+        },
+        "day6": {
+          "locations": ["Ella Rock", "Nine Arches Bridge"],
+          "description": "Scenic train and hiking",
+          "meals": "Boutique cafe",
+          "accommodation": "Boutique hotel",
+          "transport": "First class train"
+        },
+        "day7": {
+          "locations": ["Yala National Park"],
+          "description": "Premium safari experience",
+          "meals": "Safari lodge",
+          "accommodation": null,
+          "transport": "Private safari jeep"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 29380,
+        "meals": 70000,
+        "transport": 80000,
+        "accommodation": 140000,
+        "total": 319380
+      },
+      "highlights": [
+        "Complete Sri Lanka experience",
+        "Luxury accommodations",
+        "Private guides",
+        "All major attractions"
+      ]
+    },
+    {
+      "id": 24,
+      "travelStyles": ["Nature/Wildlife"],
+      "days": 1,
+      "startLocation": "Galle Port",
+      "budget": 50000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": ["Mirissa Whale Watching"],
+          "description": "Early morning whale watching expedition",
+          "meals": "Beach restaurant",
+          "accommodation": null,
+          "transport": "Boat/Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 8500,
+        "meals": 5000,
+        "transport": 8000,
+        "total": 21500
+      },
+      "highlights": ["Blue whales", "Dolphins", "Ocean wildlife"]
+    },
+    {
+      "id": 25,
+      "travelStyles": ["Spiritual"],
+      "days": 3,
+      "startLocation": "Colombo Port",
+      "budget": 80000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": ["Kelaniya Raja Maha Viharaya", "Gangaramaya Temple"],
+          "description": "Colombo temple tour",
+          "meals": "Vegetarian restaurants",
+          "accommodation": "Pilgrim guesthouse",
+          "transport": "Tuk-tuk"
+        },
+        "day2": {
+          "locations": [
+            "Anuradhapura Sacred City",
+            "Sri Maha Bodhi",
+            "Mihintale"
+          ],
+          "description": "Buddhist pilgrimage",
+          "meals": "Temple food",
+          "accommodation": "Pilgrim rest house",
+          "transport": "Private car"
+        },
+        "day3": {
+          "locations": ["Kandy Temple of the Tooth"],
+          "description": "Sacred tooth relic",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 4900,
+        "meals": 8000,
+        "transport": 25000,
+        "accommodation": 12000,
+        "total": 49900
+      },
+      "highlights": [
+        "Buddhist pilgrimage circuit",
+        "Sacred sites",
+        "Spiritual experience"
+      ]
+    },
+    {
+      "id": 26,
+      "travelStyles": ["Adventure"],
+      "days": 1,
+      "startLocation": "Galle Port",
+      "budget": 35000,
+      "budgetCategory": "Budget",
+      "itinerary": {
+        "day1": {
+          "locations": ["Hikkaduwa Snorkeling", "Bentota Water Sports"],
+          "description": "Coastal water sports day",
+          "meals": "Beach shacks",
+          "accommodation": null,
+          "transport": "Tuk-tuk"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 8000,
+        "meals": 3000,
+        "transport": 4000,
+        "total": 15000
+      },
+      "highlights": ["Coral reefs", "Jet skiing", "Beach fun"]
+    },
+    {
+      "id": 27,
+      "travelStyles": ["Cultural", "Nature/Wildlife"],
+      "days": 4,
+      "startLocation": "Kandy",
+      "budget": 150000,
+      "budgetCategory": "Comfort",
+      "itinerary": {
+        "day1": {
+          "locations": ["Temple of the Tooth", "Peradeniya Botanical Gardens"],
+          "description": "Kandy highlights",
+          "meals": "Hotel restaurant",
+          "accommodation": "4-star hotel",
+          "transport": "Tuk-tuk"
+        },
+        "day2": {
+          "locations": ["Sigiriya Rock Fortress", "Minneriya National Park"],
+          "description": "Culture and safari",
+          "meals": "Hotel restaurant",
+          "accommodation": "Safari lodge",
+          "transport": "Private car/Jeep"
+        },
+        "day3": {
+          "locations": ["Polonnaruwa Ancient City", "Dambulla Cave Temple"],
+          "description": "Ancient capitals tour",
+          "meals": "Local restaurants",
+          "accommodation": "4-star hotel",
+          "transport": "Private car"
+        },
+        "day4": {
+          "locations": ["Pinnawala Elephant Orphanage"],
+          "description": "Elephant sanctuary visit",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 23630,
+        "meals": 20000,
+        "transport": 35000,
+        "accommodation": 40000,
+        "total": 118630
+      },
+      "highlights": [
+        "Royal heritage",
+        "Ancient ruins",
+        "Elephant safari",
+        "Wildlife"
+      ]
+    },
+    {
+      "id": 28,
+      "travelStyles": ["Spiritual", "Cultural"],
+      "days": 2,
+      "startLocation": "Anuradhapura",
+      "budget": 70000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": [
+            "Anuradhapura Sacred City",
+            "Sri Maha Bodhi",
+            "Ruwanwelisaya Stupa",
+            "Mihintale"
+          ],
+          "description": "Complete Anuradhapura pilgrimage",
+          "meals": "Local restaurants",
+          "accommodation": "Heritage hotel",
+          "transport": "Bicycle/Tuk-tuk"
+        },
+        "day2": {
+          "locations": ["Yapahuwa Rock Fortress", "Dambulla Cave Temple"],
+          "description": "Cultural sites enroute",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 7700,
+        "meals": 6000,
+        "transport": 15000,
+        "accommodation": 12000,
+        "total": 40700
+      },
+      "highlights": [
+        "Ancient Buddhist heritage",
+        "Rock fortress",
+        "Cave temples"
+      ]
+    },
+    {
+      "id": 29,
+      "travelStyles": ["Adventure", "Spiritual"],
+      "days": 3,
+      "startLocation": "Kandy",
+      "budget": 90000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": ["Temple of the Tooth"],
+          "description": "Evening puja ceremony",
+          "meals": "Local restaurants",
+          "accommodation": "Guesthouse",
+          "transport": "Walking"
+        },
+        "day2": {
+          "locations": ["Adam's Peak (Sri Pada)"],
+          "description": "Night climb pilgrimage",
+          "meals": "Light meals",
+          "accommodation": "Rest house",
+          "transport": "Private car"
+        },
+        "day3": {
+          "locations": ["Kitulgala White Water Rafting"],
+          "description": "Adventure on descent",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 10000,
+        "meals": 8000,
+        "transport": 20000,
+        "accommodation": 10000,
+        "total": 48000
+      },
+      "highlights": [
+        "Spiritual pilgrimage",
+        "Sunrise at sacred peak",
+        "Rafting adventure"
+      ]
+    },
+    {
+      "id": 30,
+      "travelStyles": ["Nature/Wildlife"],
+      "days": 4,
+      "startLocation": "Colombo Port",
+      "budget": 180000,
+      "budgetCategory": "Comfort",
+      "itinerary": {
+        "day1": {
+          "locations": ["Pinnawala Elephant Orphanage"],
+          "description": "Elephant sanctuary",
+          "meals": "Hotel restaurant",
+          "accommodation": "3-star hotel",
+          "transport": "Private car"
+        },
+        "day2": {
+          "locations": ["Minneriya National Park"],
+          "description": "Wild elephant gathering",
+          "meals": "Safari lodge",
+          "accommodation": "Safari lodge",
+          "transport": "Safari jeep"
+        },
+        "day3": {
+          "locations": ["Yala National Park"],
+          "description": "Leopard safari",
+          "meals": "Safari lodge",
+          "accommodation": "Luxury tented camp",
+          "transport": "Safari jeep"
+        },
+        "day4": {
+          "locations": ["Bundala National Park", "Mirissa Whale Watching"],
+          "description": "Birds and whales",
+          "meals": "Beach restaurant",
+          "accommodation": null,
+          "transport": "Safari jeep/Boat"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 25100,
+        "meals": 25000,
+        "transport": 40000,
+        "accommodation": 50000,
+        "total": 140100
+      },
+      "highlights": [
+        "Elephant orphanage",
+        "Wild elephants",
+        "Leopards",
+        "Blue whales"
+      ]
+    },
+    {
+      "id": 31,
+      "travelStyles": ["Cultural"],
+      "days": 3,
+      "startLocation": "Galle Port",
+      "budget": 100000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": ["Galle Fort"],
+          "description": "Full day exploring Dutch fort",
+          "meals": "Fort restaurants",
+          "accommodation": "Heritage hotel in fort",
+          "transport": "Walking"
+        },
+        "day2": {
+          "locations": [
+            "Colombo National Museum",
+            "Independence Square",
+            "Gangaramaya Temple"
+          ],
+          "description": "Colombo cultural tour",
+          "meals": "Hotel restaurant",
+          "accommodation": "City hotel",
+          "transport": "Private car"
+        },
+        "day3": {
+          "locations": ["Kelaniya Raja Maha Viharaya"],
+          "description": "Ancient temple visit",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Tuk-tuk"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 1100,
+        "meals": 15000,
+        "transport": 20000,
+        "accommodation": 30000,
+        "total": 66100
+      },
+      "highlights": [
+        "Dutch colonial heritage",
+        "Museum collections",
+        "Buddhist temples"
+      ]
+    },
+    {
+      "id": 32,
+      "travelStyles": ["Adventure", "Cultural", "Nature/Wildlife"],
+      "days": 6,
+      "startLocation": "Colombo Port",
+      "budget": 280000,
+      "budgetCategory": "Luxury",
+      "itinerary": {
+        "day1": {
+          "locations": ["Kitulgala White Water Rafting"],
+          "description": "Adventure start",
+          "meals": "Eco lodge",
+          "accommodation": "Eco lodge",
+          "transport": "Private car"
+        },
+        "day2": {
+          "locations": ["Sigiriya Rock Fortress", "Dambulla Cave Temple"],
+          "description": "Cultural triangle",
+          "meals": "Fine dining",
+          "accommodation": "Luxury hotel",
+          "transport": "Private car"
+        },
+        "day3": {
+          "locations": ["Minneriya National Park", "Polonnaruwa Ancient City"],
+          "description": "Safari and ruins",
+          "meals": "Hotel restaurant",
+          "accommodation": "Safari lodge",
+          "transport": "Safari jeep"
+        },
+        "day4": {
+          "locations": ["Knuckles Mountain Range"],
+          "description": "Mountain trekking",
+          "meals": "Packed lunch",
+          "accommodation": "Eco lodge",
+          "transport": "4x4 vehicle"
+        },
+        "day5": {
+          "locations": ["Horton Plains & World's End"],
+          "description": "Highland adventure",
+          "meals": "Hotel restaurant",
+          "accommodation": "Tea bungalow",
+          "transport": "Private car"
+        },
+        "day6": {
+          "locations": ["Yala National Park"],
+          "description": "Leopard safari",
+          "meals": "Safari lodge",
+          "accommodation": null,
+          "transport": "Safari jeep"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 30580,
+        "meals": 50000,
+        "transport": 60000,
+        "accommodation": 100000,
+        "total": 240580
+      },
+      "highlights": [
+        "Complete adventure",
+        "Ancient history",
+        "Wildlife safaris",
+        "Mountain trekking"
+      ]
+    },
+    {
+      "id": 33,
+      "travelStyles": ["Spiritual"],
+      "days": 5,
+      "startLocation": "Colombo Port",
+      "budget": 150000,
+      "budgetCategory": "Comfort",
+      "itinerary": {
+        "day1": {
+          "locations": ["Kelaniya Raja Maha Viharaya", "Gangaramaya Temple"],
+          "description": "Colombo temples",
+          "meals": "Vegetarian restaurant",
+          "accommodation": "City hotel",
+          "transport": "Tuk-tuk"
+        },
+        "day2": {
+          "locations": [
+            "Anuradhapura Sacred City",
+            "Sri Maha Bodhi",
+            "Ruwanwelisaya Stupa"
+          ],
+          "description": "Ancient capital pilgrimage",
+          "meals": "Local restaurants",
+          "accommodation": "Pilgrim hotel",
+          "transport": "Private car"
+        },
+        "day3": {
+          "locations": ["Mihintale", "Dambulla Cave Temple"],
+          "description": "Buddhist heritage sites",
+          "meals": "Hotel restaurant",
+          "accommodation": "Hotel",
+          "transport": "Private car"
+        },
+        "day4": {
+          "locations": ["Kandy Temple of the Tooth"],
+          "description": "Sacred tooth relic - evening puja",
+          "meals": "Hotel restaurant",
+          "accommodation": "Heritage hotel",
+          "transport": "Private car"
+        },
+        "day5": {
+          "locations": ["Adam's Peak (Sri Pada)"],
+          "description": "Sacred peak pilgrimage",
+          "meals": "Light meals",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 7100,
+        "meals": 20000,
+        "transport": 45000,
+        "accommodation": 40000,
+        "total": 112100
+      },
+      "highlights": [
+        "Complete Buddhist pilgrimage",
+        "Sacred sites",
+        "Spiritual transformation"
+      ]
+    },
+    {
+      "id": 34,
+      "travelStyles": ["Adventure"],
+      "days": 3,
+      "startLocation": "Galle Port",
+      "budget": 120000,
+      "budgetCategory": "Comfort",
+      "itinerary": {
+        "day1": {
+          "locations": ["Hikkaduwa Snorkeling", "Mirissa Diving"],
+          "description": "Ocean adventures",
+          "meals": "Beach restaurants",
+          "accommodation": "Beach resort",
+          "transport": "Private car"
+        },
+        "day2": {
+          "locations": ["Arugam Bay Surfing"],
+          "description": "Surfing east coast",
+          "meals": "Surf cafe",
+          "accommodation": "Surf hotel",
+          "transport": "Private car"
+        },
+        "day3": {
+          "locations": ["Ella Rock", "Little Adam's Peak"],
+          "description": "Hill country hiking",
+          "meals": "Ella cafes",
+          "accommodation": null,
+          "transport": "Train"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 15000,
+        "meals": 15000,
+        "transport": 30000,
+        "accommodation": 25000,
+        "total": 85000
+      },
+      "highlights": ["Scuba diving", "World-class surfing", "Mountain hiking"]
+    },
+    {
+      "id": 35,
+      "travelStyles": ["Cultural", "Spiritual", "Nature/Wildlife"],
+      "days": 3,
+      "startLocation": "Anuradhapura",
+      "budget": 100000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": [
+            "Anuradhapura Sacred City",
+            "Sri Maha Bodhi",
+            "Mihintale"
+          ],
+          "description": "Spiritual exploration",
+          "meals": "Local restaurants",
+          "accommodation": "Heritage hotel",
+          "transport": "Bicycle"
+        },
+        "day2": {
+          "locations": ["Wilpattu National Park"],
+          "description": "Leopard safari",
+          "meals": "Safari lodge",
+          "accommodation": "Safari lodge",
+          "transport": "Safari jeep"
+        },
+        "day3": {
+          "locations": ["Sigiriya Rock Fortress", "Dambulla Cave Temple"],
+          "description": "Cultural icons",
+          "meals": "Hotel restaurant",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 15480,
+        "meals": 12000,
+        "transport": 25000,
+        "accommodation": 25000,
+        "total": 77480
+      },
+      "highlights": [
+        "Ancient Buddhist sites",
+        "Leopard safari",
+        "Rock fortress"
+      ]
+    },
+    {
+      "id": 36,
+      "travelStyles": ["Nature/Wildlife"],
+      "days": 2,
+      "startLocation": "Kandy",
+      "budget": 70000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": [
+            "Peradeniya Botanical Gardens",
+            "Udawalawe National Park"
+          ],
+          "description": "Gardens and elephant safari",
+          "meals": "Hotel restaurant",
+          "accommodation": "Safari lodge",
+          "transport": "Private car/Jeep"
+        },
+        "day2": {
+          "locations": ["Sinharaja Rain Forest"],
+          "description": "Rainforest trek",
+          "meals": "Packed lunch",
+          "accommodation": null,
+          "transport": "4x4 vehicle"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 8030,
+        "meals": 8000,
+        "transport": 20000,
+        "accommodation": 12000,
+        "total": 48030
+      },
+      "highlights": ["Botanical beauty", "Wild elephants", "Endemic species"]
+    },
+    {
+      "id": 37,
+      "travelStyles": ["Cultural"],
+      "days": 5,
+      "startLocation": "Colombo Port",
+      "budget": 200000,
+      "budgetCategory": "Comfort",
+      "itinerary": {
+        "day1": {
+          "locations": [
+            "Colombo National Museum",
+            "Gangaramaya Temple",
+            "Independence Square"
+          ],
+          "description": "Colombo cultural day",
+          "meals": "Fine dining",
+          "accommodation": "4-star hotel",
+          "transport": "Private car"
+        },
+        "day2": {
+          "locations": ["Galle Fort"],
+          "description": "Dutch colonial heritage",
+          "meals": "Fort restaurants",
+          "accommodation": "Heritage hotel",
+          "transport": "Private car"
+        },
+        "day3": {
+          "locations": ["Sigiriya Rock Fortress", "Dambulla Cave Temple"],
+          "description": "Cultural triangle day 1",
+          "meals": "Hotel restaurant",
+          "accommodation": "4-star hotel",
+          "transport": "Private car"
+        },
+        "day4": {
+          "locations": ["Polonnaruwa Ancient City", "Anuradhapura Sacred City"],
+          "description": "Ancient capitals",
+          "meals": "Hotel restaurant",
+          "accommodation": "Heritage hotel",
+          "transport": "Private car"
+        },
+        "day5": {
+          "locations": [
+            "Kandy Temple of the Tooth",
+            "Peradeniya Botanical Gardens"
+          ],
+          "description": "Hill country heritage",
+          "meals": "Fine dining",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 21380,
+        "meals": 40000,
+        "transport": 50000,
+        "accommodation": 60000,
+        "total": 171380
+      },
+      "highlights": [
+        "Complete cultural tour",
+        "All UNESCO sites",
+        "Colonial and ancient heritage"
+      ]
+    },
+    {
+      "id": 38,
+      "travelStyles": ["Adventure", "Spiritual"],
+      "days": 4,
+      "startLocation": "Colombo Port",
+      "budget": 130000,
+      "budgetCategory": "Comfort",
+      "itinerary": {
+        "day1": {
+          "locations": ["Kitulgala White Water Rafting"],
+          "description": "Adventure kickoff",
+          "meals": "Eco lodge",
+          "accommodation": "Eco lodge",
+          "transport": "Private car"
+        },
+        "day2": {
+          "locations": ["Adam's Peak (Sri Pada)"],
+          "description": "Night pilgrimage climb",
+          "meals": "Light meals",
+          "accommodation": "Rest house",
+          "transport": "Private car"
+        },
+        "day3": {
+          "locations": ["Horton Plains & World's End"],
+          "description": "Highland trekking",
+          "meals": "Hotel restaurant",
+          "accommodation": "Hill country hotel",
+          "transport": "Private car"
+        },
+        "day4": {
+          "locations": ["Kandy Temple of the Tooth"],
+          "description": "Sacred temple conclusion",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 12750,
+        "meals": 15000,
+        "transport": 35000,
+        "accommodation": 25000,
+        "total": 87750
+      },
+      "highlights": [
+        "Rafting thrills",
+        "Sacred peak sunrise",
+        "World's End viewpoint"
+      ]
+    },
+    {
+      "id": 39,
+      "travelStyles": ["Cultural", "Adventure"],
+      "days": 5,
+      "startLocation": "Kandy",
+      "budget": 180000,
+      "budgetCategory": "Comfort",
+      "itinerary": {
+        "day1": {
+          "locations": ["Temple of the Tooth", "Peradeniya Botanical Gardens"],
+          "description": "Kandy exploration",
+          "meals": "Hotel restaurant",
+          "accommodation": "Heritage hotel",
+          "transport": "Tuk-tuk"
+        },
+        "day2": {
+          "locations": ["Knuckles Mountain Range"],
+          "description": "Mountain adventure",
+          "meals": "Packed lunch",
+          "accommodation": "Eco lodge",
+          "transport": "4x4 vehicle"
+        },
+        "day3": {
+          "locations": ["Sigiriya Rock Fortress", "Dambulla Cave Temple"],
+          "description": "Cultural triangle",
+          "meals": "Hotel restaurant",
+          "accommodation": "4-star hotel",
+          "transport": "Private car"
+        },
+        "day4": {
+          "locations": ["Polonnaruwa Ancient City"],
+          "description": "Ancient capital by bicycle",
+          "meals": "Local restaurants",
+          "accommodation": "Eco lodge",
+          "transport": "Bicycle"
+        },
+        "day5": {
+          "locations": ["Ella Rock", "Nine Arches Bridge"],
+          "description": "Scenic train and hiking",
+          "meals": "Ella cafes",
+          "accommodation": null,
+          "transport": "Train"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 15980,
+        "meals": 25000,
+        "transport": 40000,
+        "accommodation": 50000,
+        "total": 130980
+      },
+      "highlights": [
+        "Royal city",
+        "Mountain wilderness",
+        "Ancient ruins",
+        "Scenic train"
+      ]
+    },
+    {
+      "id": 40,
+      "travelStyles": ["Nature/Wildlife", "Spiritual"],
+      "days": 4,
+      "startLocation": "Galle Port",
+      "budget": 140000,
+      "budgetCategory": "Comfort",
+      "itinerary": {
+        "day1": {
+          "locations": ["Turtle Hatchery", "Mirissa Whale Watching"],
+          "description": "Marine wildlife",
+          "meals": "Beach restaurants",
+          "accommodation": "Beach hotel",
+          "transport": "Boat/Car"
+        },
+        "day2": {
+          "locations": ["Kataragama Temple", "Bundala National Park"],
+          "description": "Sacred site and bird watching",
+          "meals": "Local restaurants",
+          "accommodation": "Safari lodge",
+          "transport": "Private car/Jeep"
+        },
+        "day3": {
+          "locations": ["Yala National Park"],
+          "description": "Full day leopard safari",
+          "meals": "Safari lodge",
+          "accommodation": "Safari lodge",
+          "transport": "Safari jeep"
+        },
+        "day4": {
+          "locations": ["Udawalawe National Park"],
+          "description": "Elephant safari",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Safari jeep"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 22800,
+        "meals": 18000,
+        "transport": 35000,
+        "accommodation": 35000,
+        "total": 110800
+      },
+      "highlights": [
+        "Blue whales",
+        "Pilgrimage site",
+        "Leopards",
+        "Wild elephants"
+      ]
+    },
+    {
+      "id": 41,
+      "travelStyles": ["Cultural"],
+      "days": 1,
+      "startLocation": "Anuradhapura",
+      "budget": 50000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": [
+            "Anuradhapura Sacred City",
+            "Sri Maha Bodhi",
+            "Ruwanwelisaya Stupa"
+          ],
+          "description": "Complete ancient city tour with guide",
+          "meals": "Hotel restaurant",
+          "accommodation": null,
+          "transport": "Private car with guide"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 3850,
+        "meals": 5000,
+        "transport": 8000,
+        "guide": 8000,
+        "total": 24850
+      },
+      "highlights": [
+        "Professional guide",
+        "Complete ancient city",
+        "Sacred sites"
+      ]
+    },
+    {
+      "id": 42,
+      "travelStyles": ["Adventure", "Nature/Wildlife"],
+      "days": 2,
+      "startLocation": "Kandy",
+      "budget": 80000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": ["Knuckles Mountain Range"],
+          "description": "Full day trekking",
+          "meals": "Packed lunch",
+          "accommodation": "Camping/Eco lodge",
+          "transport": "4x4 vehicle"
+        },
+        "day2": {
+          "locations": ["Horton Plains & World's End"],
+          "description": "Early morning World's End hike",
+          "meals": "Hotel restaurant",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 3850,
+        "meals": 8000,
+        "transport": 20000,
+        "accommodation": 10000,
+        "total": 41850
+      },
+      "highlights": [
+        "Mountain biodiversity",
+        "World's End viewpoint",
+        "Cloud forests"
+      ]
+    },
+    {
+      "id": 43,
+      "travelStyles": ["Spiritual", "Cultural", "Adventure"],
+      "days": 5,
+      "startLocation": "Colombo Port",
+      "budget": 200000,
+      "budgetCategory": "Comfort",
+      "itinerary": {
+        "day1": {
+          "locations": ["Gangaramaya Temple", "Kelaniya Raja Maha Viharaya"],
+          "description": "Colombo spiritual sites",
+          "meals": "Hotel restaurant",
+          "accommodation": "4-star hotel",
+          "transport": "Private car"
+        },
+        "day2": {
+          "locations": [
+            "Anuradhapura Sacred City",
+            "Sri Maha Bodhi",
+            "Mihintale"
+          ],
+          "description": "Buddhist pilgrimage",
+          "meals": "Local restaurants",
+          "accommodation": "Heritage hotel",
+          "transport": "Private car"
+        },
+        "day3": {
+          "locations": ["Sigiriya Rock Fortress", "Dambulla Cave Temple"],
+          "description": "Cultural triangle adventure",
+          "meals": "Hotel restaurant",
+          "accommodation": "4-star hotel",
+          "transport": "Private car"
+        },
+        "day4": {
+          "locations": ["Knuckles Mountain Range"],
+          "description": "Mountain trekking",
+          "meals": "Packed lunch",
+          "accommodation": "Eco lodge",
+          "transport": "4x4 vehicle"
+        },
+        "day5": {
+          "locations": ["Kandy Temple of the Tooth"],
+          "description": "Evening puja at sacred temple",
+          "meals": "Fine dining",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 14430,
+        "meals": 30000,
+        "transport": 50000,
+        "accommodation": 55000,
+        "total": 149430
+      },
+      "highlights": [
+        "Complete spiritual journey",
+        "Ancient cities",
+        "Mountain adventure"
+      ]
+    },
+    {
+      "id": 44,
+      "travelStyles": ["Nature/Wildlife"],
+      "days": 1,
+      "startLocation": "Anuradhapura",
+      "budget": 45000,
+      "budgetCategory": "Budget",
+      "itinerary": {
+        "day1": {
+          "locations": ["Wilpattu National Park"],
+          "description": "Full day leopard safari",
+          "meals": "Packed lunch",
+          "accommodation": null,
+          "transport": "Safari jeep"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 4400,
+        "meals": 3000,
+        "transport": 15000,
+        "total": 22400
+      },
+      "highlights": [
+        "Leopard spotting",
+        "Largest national park",
+        "Diverse wildlife"
+      ]
+    },
+    {
+      "id": 45,
+      "travelStyles": ["Cultural", "Spiritual"],
+      "days": 3,
+      "startLocation": "Kandy",
+      "budget": 110000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": ["Temple of the Tooth"],
+          "description": "Full day at sacred temple with ceremonies",
+          "meals": "Vegetarian restaurants",
+          "accommodation": "Heritage hotel",
+          "transport": "Walking"
+        },
+        "day2": {
+          "locations": ["Dambulla Cave Temple", "Sigiriya Rock Fortress"],
+          "description": "Cultural triangle highlights",
+          "meals": "Hotel restaurant",
+          "accommodation": "4-star hotel",
+          "transport": "Private car"
+        },
+        "day3": {
+          "locations": ["Anuradhapura Sacred City", "Sri Maha Bodhi"],
+          "description": "Sacred city pilgrimage",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 13630,
+        "meals": 15000,
+        "transport": 25000,
+        "accommodation": 30000,
+        "total": 83630
+      },
+      "highlights": ["Sacred relic", "Cave temples", "Ancient Buddhist city"]
+    },
+    {
+      "id": 46,
+      "travelStyles": ["Adventure"],
+      "days": 5,
+      "startLocation": "Galle Port",
+      "budget": 180000,
+      "budgetCategory": "Comfort",
+      "itinerary": {
+        "day1": {
+          "locations": ["Hikkaduwa Snorkeling", "Mirissa Diving"],
+          "description": "Southern coast diving",
+          "meals": "Beach restaurants",
+          "accommodation": "Beach resort",
+          "transport": "Private car"
+        },
+        "day2": {
+          "locations": ["Arugam Bay Surfing"],
+          "description": "East coast surfing",
+          "meals": "Surf cafe",
+          "accommodation": "Surf hotel",
+          "transport": "Private car"
+        },
+        "day3": {
+          "locations": ["Ella Rock", "Little Adam's Peak"],
+          "description": "Ella hiking",
+          "meals": "Ella cafes",
+          "accommodation": "Boutique hotel",
+          "transport": "Train"
+        },
+        "day4": {
+          "locations": ["Horton Plains & World's End"],
+          "description": "Highland plateau",
+          "meals": "Hotel restaurant",
+          "accommodation": "Hill country hotel",
+          "transport": "Private car"
+        },
+        "day5": {
+          "locations": ["Kitulgala White Water Rafting"],
+          "description": "Rafting finale",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 25750,
+        "meals": 25000,
+        "transport": 50000,
+        "accommodation": 50000,
+        "total": 150750
+      },
+      "highlights": [
+        "Scuba diving",
+        "World-class surfing",
+        "Mountain hiking",
+        "White water rafting"
+      ]
+    },
+    {
+      "id": 47,
+      "travelStyles": ["Cultural", "Nature/Wildlife"],
+      "days": 2,
+      "startLocation": "Colombo Port",
+      "budget": 75000,
+      "budgetCategory": "Moderate",
+      "itinerary": {
+        "day1": {
+          "locations": ["Sigiriya Rock Fortress", "Minneriya National Park"],
+          "description": "Rock fortress and elephant safari",
+          "meals": "Hotel restaurant",
+          "accommodation": "Safari lodge",
+          "transport": "Private car/Jeep"
+        },
+        "day2": {
+          "locations": ["Dambulla Cave Temple", "Pinnawala Elephant Orphanage"],
+          "description": "Cave temples and elephant sanctuary",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 17480,
+        "meals": 10000,
+        "transport": 22000,
+        "accommodation": 12000,
+        "total": 61480
+      },
+      "highlights": [
+        "Lion rock",
+        "Wild elephants",
+        "Cave art",
+        "Elephant bathing"
+      ]
+    },
+    {
+      "id": 48,
+      "travelStyles": ["Spiritual"],
+      "days": 1,
+      "startLocation": "Colombo Port",
+      "budget": 30000,
+      "budgetCategory": "Budget",
+      "itinerary": {
+        "day1": {
+          "locations": ["Kelaniya Raja Maha Viharaya", "Gangaramaya Temple"],
+          "description": "Colombo Buddhist temple circuit",
+          "meals": "Vegetarian restaurants",
+          "accommodation": null,
+          "transport": "Tuk-tuk"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 500,
+        "meals": 2500,
+        "transport": 4000,
+        "total": 7000
+      },
+      "highlights": ["Historic temples", "Buddhist art", "City spirituality"]
+    },
+    {
+      "id": 49,
+      "travelStyles": ["Adventure", "Cultural", "Spiritual", "Nature/Wildlife"],
+      "days": 10,
+      "startLocation": "Colombo Port",
+      "budget": 500000,
+      "budgetCategory": "Luxury",
+      "itinerary": {
+        "day1": {
+          "locations": ["Colombo National Museum", "Gangaramaya Temple"],
+          "description": "Colombo cultural introduction",
+          "meals": "5-star restaurant",
+          "accommodation": "5-star hotel",
+          "transport": "Luxury car"
+        },
+        "day2": {
+          "locations": ["Kitulgala White Water Rafting"],
+          "description": "Adventure day",
+          "meals": "Resort",
+          "accommodation": "Luxury eco lodge",
+          "transport": "Private car"
+        },
+        "day3": {
+          "locations": ["Adam's Peak (Sri Pada)"],
+          "description": "Sacred pilgrimage",
+          "meals": "Hotel",
+          "accommodation": "Boutique hotel",
+          "transport": "Private car"
+        },
+        "day4": {
+          "locations": ["Sigiriya Rock Fortress", "Dambulla Cave Temple"],
+          "description": "Cultural triangle",
+          "meals": "Fine dining",
+          "accommodation": "Luxury resort",
+          "transport": "Private car"
+        },
+        "day5": {
+          "locations": [
+            "Anuradhapura Sacred City",
+            "Sri Maha Bodhi",
+            "Mihintale"
+          ],
+          "description": "Ancient capital pilgrimage",
+          "meals": "Hotel",
+          "accommodation": "Heritage hotel",
+          "transport": "Private car"
+        },
+        "day6": {
+          "locations": ["Wilpattu National Park"],
+          "description": "Leopard safari",
+          "meals": "Safari lodge",
+          "accommodation": "Luxury tented camp",
+          "transport": "Safari jeep"
+        },
+        "day7": {
+          "locations": [
+            "Kandy Temple of the Tooth",
+            "Peradeniya Botanical Gardens"
+          ],
+          "description": "Royal city heritage",
+          "meals": "Fine dining",
+          "accommodation": "Heritage luxury hotel",
+          "transport": "Private car"
+        },
+        "day8": {
+          "locations": [
+            "Horton Plains & World's End",
+            "Hakgala Botanical Gardens"
+          ],
+          "description": "Highland adventure",
+          "meals": "Tea estate",
+          "accommodation": "Tea bungalow",
+          "transport": "Private car"
+        },
+        "day9": {
+          "locations": ["Yala National Park"],
+          "description": "Premium safari",
+          "meals": "Safari lodge",
+          "accommodation": "Luxury safari camp",
+          "transport": "Private safari jeep"
+        },
+        "day10": {
+          "locations": ["Mirissa Whale Watching", "Galle Fort"],
+          "description": "Ocean and heritage finale",
+          "meals": "Fort restaurant",
+          "accommodation": null,
+          "transport": "Boat/Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 45930,
+        "meals": 100000,
+        "transport": 100000,
+        "accommodation": 200000,
+        "total": 445930
+      },
+      "highlights": [
+        "Ultimate Sri Lanka experience",
+        "All major attractions",
+        "Luxury throughout",
+        "Comprehensive adventure"
+      ]
+    },
+    {
+      "id": 50,
+      "travelStyles": ["Nature/Wildlife"],
+      "days": 5,
+      "startLocation": "Galle Port",
+      "budget": 220000,
+      "budgetCategory": "Comfort",
+      "itinerary": {
+        "day1": {
+          "locations": ["Mirissa Whale Watching", "Turtle Hatchery"],
+          "description": "Marine wildlife day",
+          "meals": "Beach restaurants",
+          "accommodation": "Beach resort",
+          "transport": "Boat/Car"
+        },
+        "day2": {
+          "locations": ["Bundala National Park"],
+          "description": "Bird watching paradise",
+          "meals": "Safari lodge",
+          "accommodation": "Safari lodge",
+          "transport": "Safari jeep"
+        },
+        "day3": {
+          "locations": ["Yala National Park"],
+          "description": "Full day leopard safari",
+          "meals": "Safari lodge",
+          "accommodation": "Luxury tented camp",
+          "transport": "Safari jeep"
+        },
+        "day4": {
+          "locations": ["Udawalawe National Park", "Sinharaja Rain Forest"],
+          "description": "Elephants and rainforest",
+          "meals": "Local restaurants",
+          "accommodation": "Eco lodge",
+          "transport": "Safari jeep/4x4"
+        },
+        "day5": {
+          "locations": ["Pinnawala Elephant Orphanage"],
+          "description": "Elephant sanctuary finale",
+          "meals": "Local restaurants",
+          "accommodation": null,
+          "transport": "Private car"
+        }
+      },
+      "estimatedCost": {
+        "entranceFees": 31530,
+        "meals": 30000,
+        "transport": 50000,
+        "accommodation": 60000,
+        "total": 171530
+      },
+      "highlights": [
+        "Blue whales",
+        "Migratory birds",
+        "Leopards",
+        "Wild & orphan elephants",
+        "Rainforest"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Route Master - Sri Lanka Heritage Explorer",
+  "description": "An AI-powered travel planning application for exploring the cultural heritage and natural wonders of Sri Lanka with interactive maps and personalized itineraries.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
