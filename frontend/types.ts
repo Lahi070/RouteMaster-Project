@@ -207,3 +207,58 @@ export interface LocationListResponse {
   total: number;
   locations: Location[];
 }
+
+// ── Causal AI Pipeline Types ──────────────────────────────────────────────────
+
+export interface CausalRecommendRequest {
+  age: number;
+  gender: string;
+  preferences: string[];
+  budget: number;
+  time: number;
+  top_n?: number;
+  constraints?: { region?: string; max_distance?: number };
+}
+
+export interface SHAPFeature {
+  feature: string;
+  shap_value: number;
+}
+
+export interface DestinationExplanation {
+  top_features: SHAPFeature[];
+  explanation_text: string;
+  confidence: number;
+}
+
+export interface AIDestination {
+  name: string;
+  confidence: number;
+  causal_cate: number;
+  lat?: number | null;
+  lng?: number | null;
+  cost_lkr?: number | null;
+  visit_duration_h?: number | null;
+  category?: string | null;
+}
+
+export interface OptimizedStop {
+  order: number;
+  name: string;
+  lat?: number | null;
+  lng?: number | null;
+  distance_from_prev_km: number;
+  cost_lkr?: number | null;
+  visit_duration_h?: number | null;
+}
+
+export interface CausalRecommendResponse {
+  recommended_destinations: AIDestination[];
+  optimized_route: OptimizedStop[];
+  total_distance_km: number;
+  total_cost_lkr: number;
+  estimated_time_h: number;
+  explanations: Record<string, DestinationExplanation>;
+  model_name: string;
+  causal_method: string;
+}

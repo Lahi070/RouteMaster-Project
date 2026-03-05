@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from api.routes import admin_users, auth, locations, recommendations, users
+from api.routes.recommendations import causal_router
 from config import settings
 from schemas.common import HealthResponse
 
@@ -30,6 +31,7 @@ app.include_router(users.router)
 app.include_router(recommendations.router)
 app.include_router(locations.router)
 app.include_router(admin_users.router)
+app.include_router(causal_router)
 
 @app.get("/", response_model=HealthResponse, tags=["Health"])
 async def health_check() -> HealthResponse:

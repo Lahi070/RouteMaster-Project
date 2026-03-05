@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Map, Compass, User, LogOut, MapPin, Users } from "lucide-react";
+import { Map, Compass, User, LogOut, MapPin, Users, Brain } from "lucide-react";
 import { motion } from "framer-motion";
 import { useAuth } from "../context/AuthContext";
 
@@ -59,6 +59,11 @@ const Navbar: React.FC = () => {
                   icon={<Map size={20} />}
                   label="Routes"
                 />
+                <NavLink
+                  to="/causal-recommend"
+                  icon={<Brain size={20} />}
+                  label="AI"
+                />
               </>
             )}
             <NavLink to="/profile" icon={<User size={20} />} label="Profile" />
@@ -110,7 +115,9 @@ const NavLink: React.FC<{
     pathname === to ||
     (to === "/recommendations" &&
       (pathname.startsWith("/route") ||
-        pathname.startsWith("/destination") ||
+        pathname.startsWith("/destination"))) ||
+    (to === "/causal-recommend" &&
+      (pathname.startsWith("/causal-recommend") ||
         pathname.startsWith("/explain")));
 
   return (
