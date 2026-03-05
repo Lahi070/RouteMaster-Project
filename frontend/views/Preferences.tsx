@@ -21,10 +21,20 @@ const BUDGET_RANGE_MAP: Record<string, number> = {
   premium: 200000,
 };
 
+const MAX_DAYS = 14;
+
 const calculateDays = (start: string, end: string): number => {
   if (!start || !end) return 1;
   const diffTime = new Date(end).getTime() - new Date(start).getTime();
   return Math.max(1, Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1);
+};
+
+// Compute the max end-date (startDate + 13 days = 14-day trip inclusive)
+const addDays = (dateStr: string, n: number): string => {
+  if (!dateStr) return "";
+  const d = new Date(dateStr);
+  d.setDate(d.getDate() + n);
+  return d.toISOString().split("T")[0];
 };
 
 const Preferences: React.FC = () => {
@@ -114,6 +124,10 @@ const Preferences: React.FC = () => {
         return;
       }
       const days = calculateDays(startDate, endDate);
+      if (days > MAX_DAYS) {
+        alert(`Maximum trip duration is ${MAX_DAYS} days. Please adjust your dates.`);
+        return;
+      }
       navigate("/recommendations", {
         state: {
           preferences: {
@@ -219,6 +233,7 @@ const Preferences: React.FC = () => {
                   <input
                     type="date"
                     min={startDate || todayStr}
+                    max={startDate ? addDays(startDate, MAX_DAYS - 1) : ""}
                     value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
                     className="w-full p-4 rounded-xl bg-gray-50 border-none outline-none focus:ring-2 focus:ring-[#FF6B35]"

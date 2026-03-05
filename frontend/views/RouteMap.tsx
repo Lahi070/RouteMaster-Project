@@ -11,20 +11,20 @@ import { motion } from "framer-motion";
 import {
   MapPin,
   Clock,
-  ArrowRight,
-  TrendingUp,
   RefreshCw,
-  Layers,
   AlertCircle,
   Loader2,
+  Brain,
+  Route,
 } from "lucide-react";
 import Button from "../components/Button";
-import { Link, useLocation } from "react-router-dom";
-import { TravelRecommendation, DayItinerary, LocationInfo } from "../types";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { TravelRecommendation, DayItinerary, LocationInfo, OptimizedStop, CausalRecommendResponse } from "../types";
 import {
   getLocations,
   getStartLocationCoordinates,
 } from "../services/apiService";
+
 
 interface ItineraryLocation {
   name: string;
@@ -36,22 +36,29 @@ interface ItineraryLocation {
 }
 
 const RouteMap: React.FC = () => {
-  const location = useLocation();
+  const location   = useLocation();
+  const navigate   = useNavigate();
   const [selectedIdx, setSelectedIdx] = useState(0);
   const [locationCoordinates, setLocationCoordinates] = useState<
     Record<string, [number, number]>
   >({});
   const [loadingCoords, setLoadingCoords] = useState(true);
 
-  const recommendation = (
-    location.state as { recommendation?: TravelRecommendation }
-  )?.recommendation;
+  const routeState  = location.state as {
+    recommendation?: TravelRecommendation;
+    aiRoute?: OptimizedStop[];
+    aiResult?: CausalRecommendResponse;
+  } | null;
+
+  const recommendation = routeState?.recommendation;
+  const aiRoute        = routeState?.aiRoute;
+  const aiResult       = routeState?.aiResult;
+  const isAIMode       = !!aiRoute && aiRoute.length > 0;
 
   // Fetch location coordinates from API
   useEffect(() => {
     const fetchCoordinates = async () => {
       try {
-        // Fetch both start locations and regular locations in parallel
         const [startCoords, locations] = await Promise.all([
           getStartLocationCoordinates(),
           getLocations(),
@@ -60,9 +67,20 @@ const RouteMap: React.FC = () => {
         const coordsMap: Record<string, [number, number]> = { ...startCoords };
 
         locations.forEach((loc) => {
-          if (loc.coordinates) {
-            coordsMap[loc.name] = loc.coordinates;
+          const raw = loc.coordinates as any;
+          if (!raw) return;
+
+          let pair: [number, number] | null = null;
+
+          if (Array.isArray(raw) && raw.length === 2) {
+            // [lat, lng] tuple
+            pair = [Number(raw[0]), Number(raw[1])];
+          } else if (typeof raw === "object" && raw.lat != null && raw.lng != null) {
+            // { lat, lng } dict
+            pair = [Number(raw.lat), Number(raw.lng)];
           }
+
+          if (pair) coordsMap[loc.name] = pair;
         });
 
         setLocationCoordinates(coordsMap);
@@ -106,7 +124,7 @@ const RouteMap: React.FC = () => {
     return null;
   };
 
-  if (!recommendation) {
+  if (!recommendation && !isAIMode) {
     return (
       <div className="min-h-screen pt-28 pb-20 px-6 max-w-7xl mx-auto flex items-center justify-center">
         <div className="text-center">
@@ -133,6 +151,155 @@ const RouteMap: React.FC = () => {
     );
   }
 
+  // ── AI Route Mode ─────────────────────────────────────────────────────────
+  if (isAIMode) {
+    const aiStops = aiRoute!.filter(s => s.lat && s.lng);
+    const polyAI  = aiStops.map(s => [s.lat!, s.lng!] as [number, number]);
+    const centerAI: [number, number] = aiStops.length > 0
+      ? [
+          aiStops.reduce((a, s) => a + s.lat!, 0) / aiStops.length,
+          aiStops.reduce((a, s) => a + s.lng!, 0) / aiStops.length,
+        ]
+      : [8.35, 80.51];
+
+    return (
+      <div className="h-screen pt-20 flex flex-col md:flex-row overflow-hidden">
+        {/* AI Sidebar */}
+        <div className="w-full md:w-[450px] bg-white border-r border-gray-200 overflow-y-auto z-10 shadow-xl">
+          <div className="p-8">
+            {/* Header */}
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-2xl font-bold text-[#004E89] flex items-center gap-2">
+                <Brain size={22} className="text-[#FF6B35]" /> AI Optimised Route
+              </h2>
+              <button onClick={() => navigate(-1)}
+                className="p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                <RefreshCw className="w-5 h-5 text-gray-400" />
+              </button>
+            </div>
+            <p className="text-xs text-gray-400 mb-5">Ordered by Nearest Neighbour TSP</p>
+
+            {/* Summary strip */}
+            {aiResult && (
+              <div className="mb-5 p-4 bg-gradient-to-br from-[#004E89]/5 to-[#FF6B35]/5 rounded-xl space-y-1">
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-500">Total Distance</span>
+                  <span className="font-bold text-[#004E89]">{aiResult.total_distance_km.toFixed(1)} km</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-500">Total Cost</span>
+                  <span className="font-bold text-[#FF6B35]">LKR {aiResult.total_cost_lkr.toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-500">Est. Time</span>
+                  <span className="font-bold">{aiResult.estimated_time_h}h</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-500">Model</span>
+                  <span className="font-bold text-xs text-purple-600">{aiResult.model_name}</span>
+                </div>
+              </div>
+            )}
+
+            {/* Stops */}
+            <div className="space-y-4 relative">
+              <div className="absolute left-[19px] top-6 bottom-6 w-0.5
+                              bg-gradient-to-b from-[#FF6B35] via-[#F7B32B] to-[#06D6A0]" />
+              {aiRoute!.map((stop, idx) => (
+                <motion.div key={stop.order}
+                  initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: idx * 0.08 }}
+                  onClick={() => setSelectedIdx(idx)}
+                  className={`relative pl-12 cursor-pointer group transition-all
+                    ${selectedIdx === idx ? "scale-[1.02]" : ""}`}>
+                  {/* Dot */}
+                  <div className={`absolute left-0 top-0 w-10 h-10 rounded-full flex items-center justify-center
+                    border-4 border-white shadow-md z-10 transition-all
+                    ${selectedIdx === idx ? "bg-[#FF6B35] scale-110" : "bg-white group-hover:bg-gray-50"}`}>
+                    <span className={`text-sm font-bold ${selectedIdx === idx ? "text-white" : "text-gray-400"}`}>
+                      {stop.order}
+                    </span>
+                  </div>
+                  <div className={`p-4 rounded-2xl border-2 transition-all
+                    ${selectedIdx === idx ? "border-[#FF6B35] bg-[#FF6B35]/5 shadow-lg" : "border-gray-100"}`}>
+                    <h4 className="font-bold text-lg text-[#004E89] mb-1">{stop.name}</h4>
+                    <div className="flex gap-4 text-xs text-gray-500">
+                      {stop.distance_from_prev_km > 0 && (
+                        <span className="flex items-center gap-1">
+                          <Route size={12} /> {stop.distance_from_prev_km.toFixed(1)} km from prev
+                        </span>
+                      )}
+                      {stop.cost_lkr != null && (
+                        <span>LKR {stop.cost_lkr.toLocaleString()}</span>
+                      )}
+                      {stop.visit_duration_h != null && (
+                        <span className="flex items-center gap-1">
+                          <Clock size={12} /> {stop.visit_duration_h}h
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="mt-10">
+              <button
+                onClick={() => navigate("/explain", {
+                  state: {
+                    explanations: aiResult?.explanations,
+                    destinations: aiResult?.recommended_destinations,
+                  }
+                })}
+                className="w-full py-4 bg-[#004E89] text-white rounded-2xl font-bold
+                           flex items-center justify-center gap-2 hover:bg-[#003d6e] transition-colors">
+                <Brain size={18} /> View AI Explanations
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Map */}
+        <div className="flex-grow relative bg-gray-100">
+          <MapContainer center={centerAI} zoom={14} scrollWheelZoom style={{ height: "100%", width: "100%" }}>
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            {aiStops.map((stop, idx) => {
+              const icon = L.divIcon({
+                className: "custom-div-icon",
+                html: `<div style="background:${selectedIdx === idx ? "#004E89" : "#FF6B35"};
+                  color:white;width:28px;height:28px;display:flex;justify-content:center;
+                  align-items:center;border-radius:50%;font-weight:bold;border:2px solid white;
+                  box-shadow:0 4px 6px -1px rgba(0,0,0,0.15);font-size:13px">${stop.order}</div>`,
+                iconSize: [28, 28], iconAnchor: [14, 14],
+              });
+              return (
+                <Marker key={stop.order} position={[stop.lat!, stop.lng!]} icon={icon}>
+                  <Popup>
+                    <div className="p-2">
+                      <h4 className="font-bold">{stop.name}</h4>
+                      <p className="text-xs text-gray-500">Stop #{stop.order}</p>
+                      {stop.distance_from_prev_km > 0 && (
+                        <p className="text-xs text-gray-400">{stop.distance_from_prev_km.toFixed(1)} km from previous</p>
+                      )}
+                    </div>
+                  </Popup>
+                </Marker>
+              );
+            })}
+            {polyAI.length > 1 && (
+              <Polyline pathOptions={{ color: "#FF6B35", weight: 4, dashArray: "10, 10" }}
+                positions={polyAI} />
+            )}
+          </MapContainer>
+        </div>
+      </div>
+    );
+  }
+
+  // ── Classic itinerary mode continues below ─────────────────────────────────
   // Extract locations from itinerary
   const itineraryLocations: ItineraryLocation[] = [];
   const dayKeys = Object.keys(recommendation.itinerary).sort();
@@ -152,19 +319,29 @@ const RouteMap: React.FC = () => {
 
   dayKeys.forEach((dayKey, dayIndex) => {
     const day = recommendation.itinerary[dayKey];
-    // Cast locations to an array of objects to access properties
     const locs = day.locations as unknown as Record<string, any>[];
 
     locs.forEach((locObj) => {
       const displayName = locObj.name ? locObj.name.toString() : JSON.stringify(locObj);
 
+      // Prefer coordinates embedded directly in the location object (from itinerary builder)
+      let coords: [number, number] | null = null;
+      if (locObj.lat != null && locObj.lng != null) {
+        coords = [parseFloat(locObj.lat), parseFloat(locObj.lng)];
+      } else if (locObj.coordinates && Array.isArray(locObj.coordinates) && locObj.coordinates.length === 2) {
+        coords = locObj.coordinates as [number, number];
+      } else {
+        // Fall back to the API-fetched name → coordinate map
+        coords = getLocationCoordinates(displayName);
+      }
+
       itineraryLocations.push({
         name: displayName,
         day: dayKey,
         dayNumber: dayIndex + 1,
-        description: locObj.description || day.description, // Use location-specific description, fallback to day's
+        description: locObj.description || day.description,
         transport: day.transport,
-        coordinates: getLocationCoordinates(locObj),
+        coordinates: coords,
       });
     });
   });
@@ -274,7 +451,7 @@ const RouteMap: React.FC = () => {
                   </p>
                   <div className="flex items-center text-gray-500 text-xs font-semibold space-x-4">
                     <span className="flex items-center">
-                      <Layers className="w-3 h-3 mr-1" /> {loc.transport}
+                      <MapPin className="w-3 h-3 mr-1" /> {loc.transport}
                     </span>
                   </div>
                 </div>

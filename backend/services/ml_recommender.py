@@ -1,9 +1,15 @@
-import os
 import ast
-import pandas as pd
+import logging
+import os
+from itertools import combinations
+
 import numpy as np
-from itertools import combinations, permutations
+import pandas as pd
+
 from config import settings
+
+logger = logging.getLogger(__name__)
+
 
 class LocationRecommender:
     def __init__(self, data_path: str = None):
@@ -18,7 +24,7 @@ class LocationRecommender:
         try:
             return ast.literal_eval(doc)
         except (ValueError, SyntaxError) as e:
-            print(f"Error parsing document: {e}")
+            logger.debug("Error parsing document: %s", e)
             return []
 
     def recommend_locations(self, user_activities, user_bucket_list):
@@ -33,14 +39,14 @@ class LocationRecommender:
                     try:
                         extracted_activities = ast.literal_eval(extracted_activities)
                     except Exception as e:
-                        print(f"Error parsing extracted_activities for place {row['name']}: {e}")
+                        logger.debug("Error parsing extracted_activities for place %s: %s", row['name'], e)
                         continue
                         
                 if isinstance(activity_scores, str):
                     try:
                         activity_scores = ast.literal_eval(activity_scores)
                     except Exception as e:
-                        print(f"Error parsing activity_scores for place {row['name']}: {e}")
+                        logger.debug("Error parsing activity_scores for place %s: %s", row['name'], e)
                         continue
                 
                 if activity in extracted_activities:
@@ -49,7 +55,7 @@ class LocationRecommender:
                     if activity_index < len(activity_scores):
                         activity_score = activity_scores[activity_index]
                     else:
-                        print(f"Activity index out of range for place {row['name']}.")
+                        logger.debug("Activity index out of range for place %s.", row['name'])
                         continue
                         
                     activity_matches.append({
@@ -81,13 +87,13 @@ class LocationRecommender:
                     try:
                         extracted_activities = ast.literal_eval(extracted_activities)
                     except Exception as e:
-                        print(f"Error parsing extracted_activities for place {row['name']}: {e}")
+                        logger.debug("Error parsing extracted_activities for place %s: %s", row['name'], e)
                         continue
                 if isinstance(activity_scores, str):
                     try:
                         activity_scores = ast.literal_eval(activity_scores)
                     except Exception as e:
-                        print(f"Error parsing activity_scores for place {row['name']}: {e}")
+                        logger.debug("Error parsing activity_scores for place %s: %s", row['name'], e)
                         continue
                 
                 if activity in extracted_activities:
@@ -96,7 +102,7 @@ class LocationRecommender:
                         activity_score = activity_scores[activity_index]
                         activity_places[activity].append((row['name'], activity_score))
                     else:
-                        print(f"Activity index out of range for place {row['name']}.")
+                        logger.debug("Activity index out of range for place %s.", row['name'])
         
         return activity_places
 

@@ -20,6 +20,8 @@ import Profile from "./views/Profile";
 import Locations from "./views/Locations";
 import Users from "./views/Users";
 import Terms from "./views/Terms";
+import CausalRecommend from "./views/CausalRecommend";
+
 
 const App: React.FC = () => {
   return (
@@ -94,6 +96,14 @@ const App: React.FC = () => {
                 element={
                   <ProtectedRoute>
                     <Users />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/causal-recommend"
+                element={
+                  <ProtectedRoute>
+                    <CausalRecommend />
                   </ProtectedRoute>
                 }
               />

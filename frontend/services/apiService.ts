@@ -9,9 +9,11 @@ import {
   UserPreferenceResponse,
   SavedItineraryResponse,
   TravelRecommendation,
+  CausalRecommendRequest,
+  CausalRecommendResponse,
 } from "../types";
 
-const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:8000";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || process.env.API_BASE_URL || "http://localhost:8000";
 
 // Token management
 let accessToken: string | null = localStorage.getItem("accessToken");
@@ -316,7 +318,24 @@ export const getRecommendations = async (
   });
 
   if (!response.ok) {
-    throw new Error(`API error: ${response.status}`);
+    // Parse Pydantic validation errors (422) and surface a readable message
+    if (response.status === 422) {
+      try {
+        const errBody = await response.json();
+        const detail = errBody?.detail;
+        if (Array.isArray(detail) && detail.length > 0) {
+          const first = detail[0];
+          const field = (first.loc as string[])?.slice(1).join(".") ?? "input";
+          const msg = first.msg ?? "validation error";
+          throw new Error(`Validation error on '${field}': ${msg}`);
+        }
+      } catch (parseErr) {
+        if (parseErr instanceof Error && parseErr.message.startsWith("Validation")) {
+          throw parseErr;
+        }
+      }
+    }
+    throw new Error(`Request failed (${response.status}). Please check your inputs and try again.`);
   }
 
   return response.json();
@@ -526,4 +545,22 @@ export const adminUserAPI = {
 
     return response.json();
   },
+};
+
+// ── Causal AI Recommendation ──────────────────────────────────────────────────
+
+export const getCausalRecommendations = async (
+  req: CausalRecommendRequest,
+): Promise<CausalRecommendResponse> => {
+  const response = await apiClient(`${API_BASE_URL}/api/recommend`, {
+    method: "POST",
+    body: JSON.stringify(req),
+  });
+
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    throw new Error(err.detail || `AI API error: ${response.status}`);
+  }
+
+  return response.json();
 };
