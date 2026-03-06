@@ -15,6 +15,14 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { useAuth } from "../context/AuthContext";
 
+const SECURITY_QUESTIONS = [
+  "What was the name of your first pet?",
+  "What is your mother's maiden name?",
+  "What city were you born in?",
+  "What was the make of your first car?",
+  "What is the name of your favorite childhood teacher?",
+];
+
 const Input = ({
   label,
   id,
@@ -76,6 +84,8 @@ const Register: React.FC = () => {
     email: "",
     password: "",
     confirm: "",
+    security_question: SECURITY_QUESTIONS[0],
+    security_answer: "",
     terms: false,
   });
   const [errs, setErrs] = useState<any>({});
@@ -101,6 +111,7 @@ const Register: React.FC = () => {
       eList.email = "Invalid email";
     if (score < 4) eList.password = "Weak password";
     if (form.password !== form.confirm) eList.confirm = "Mismatch";
+    if (!form.security_answer.trim()) eList.security_answer = "Required";
     if (!form.terms) eList.terms = "Required";
 
     if (Object.keys(eList).length > 0) return setErrs(eList);
@@ -113,6 +124,8 @@ const Register: React.FC = () => {
         email: form.email,
         username: form.username,
         password: form.password,
+        security_question: form.security_question,
+        security_answer: form.security_answer,
       });
       setDone(true);
       setTimeout(() => navigate("/preferences"), 2000);
@@ -219,6 +232,43 @@ const Register: React.FC = () => {
                   error={errs.confirm}
                   onChange={(e: any) =>
                     setForm({ ...form, confirm: e.target.value })
+                  }
+                />
+
+                <div className="space-y-1 w-full relative">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 z-10">
+                    <ShieldCheck size={20} />
+                  </div>
+                  <select
+                    id="security_question"
+                    value={form.security_question}
+                    onChange={(e: any) =>
+                      setForm({ ...form, security_question: e.target.value })
+                    }
+                    className={`peer w-full bg-white/50 border border-gray-200 rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent outline-none transition-all appearance-none`}
+                  >
+                    {SECURITY_QUESTIONS.map((q) => (
+                      <option key={q} value={q}>
+                        {q}
+                      </option>
+                    ))}
+                  </select>
+                  <label className="absolute -top-2 left-4 text-xs text-[#FF6B35] bg-white px-2 pointer-events-none transition-all z-10">
+                    Security Question
+                  </label>
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                  </div>
+                </div>
+
+                <Input
+                  label="Security Answer"
+                  id="security_answer"
+                  icon={ShieldCheck}
+                  value={form.security_answer}
+                  error={errs.security_answer}
+                  onChange={(e: any) =>
+                    setForm({ ...form, security_answer: e.target.value })
                   }
                 />
 

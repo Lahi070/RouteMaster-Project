@@ -13,8 +13,8 @@ from schemas.auth import (
     RefreshTokenRequest,
     RegisterRequest,
     TokenResponse,
-    ForgotPasswordRequest,
-    ResetPasswordRequest,
+    SecurityQuestionResponse,
+    ResetPasswordSecurityRequest,
 )
 from schemas.common import MessageResponse
 from schemas.user import UserResponse
@@ -54,6 +54,8 @@ async def register(
         email=data.email,
         username=data.username,
         password=data.password,
+        security_question=data.security_question,
+        security_answer=data.security_answer,
         full_name=data.full_name,
         ip_address=ip_address,
         user_agent=user_agent,
@@ -244,25 +246,24 @@ async def get_current_user_info(
     """
     return UserResponse.model_validate(current_user)
 
-@router.post("/forgot-password", response_model=MessageResponse)
-async def forgot_password(
-    data: ForgotPasswordRequest,
+@router.get("/security-question/{username}", response_model=SecurityQuestionResponse)
+async def get_security_question(
+    username: str,
     db: Session = Depends(get_db),
 ):
     """
-    Request a password reset link to be sent to the email.
-    Always returns success to prevent email enumeration.
+    Get the security question for a given username.
     """
-    AuthService.forgot_password(db, data.email)
-    return MessageResponse(message="If an account exists with that email, a password reset link has been sent.")
+    question = AuthService.get_security_question(db, username)
+    return SecurityQuestionResponse(question=question)
 
-@router.post("/reset-password", response_model=MessageResponse)
-async def reset_password(
-    data: ResetPasswordRequest,
+@router.post("/reset-password-security", response_model=MessageResponse)
+async def reset_password_security(
+    data: ResetPasswordSecurityRequest,
     db: Session = Depends(get_db),
 ):
     """
-    Reset password using the token from the email.
+    Reset password using the answer to the security question.
     """
-    AuthService.reset_password(db, data.token, data.new_password)
+    AuthService.reset_password_security(db, data.username, data.security_answer, data.new_password)
     return MessageResponse(message="Password has been reset successfully. You can now log in.")

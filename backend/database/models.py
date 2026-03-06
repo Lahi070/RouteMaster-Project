@@ -36,6 +36,8 @@ class User(Base):
     password_hash: Mapped[str] = mapped_column(String(255), nullable=False)
     full_name: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
     profile_picture: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
+    security_question: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
+    security_answer: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
     role: Mapped[str] = mapped_column(
         Enum("user", "admin", name="user_role"), 
         default="user", 
@@ -72,11 +74,6 @@ class User(Base):
     saved_itineraries: Mapped[List["SavedItinerary"]] = relationship(
         "SavedItinerary", 
         back_populates="user",
-        cascade="all, delete-orphan"
-    )
-    password_resets: Mapped[List["PasswordResetToken"]] = relationship(
-        "PasswordResetToken", 
-        back_populates="user", 
         cascade="all, delete-orphan"
     )
     activity_logs: Mapped[List["UserActivityLog"]] = relationship(
@@ -152,34 +149,6 @@ class UserPreference(Base):
 
     def __repr__(self) -> str:
         return f"<UserPreference(id={self.id}, user_id={self.user_id})>"
-
-
-class PasswordResetToken(Base):
-    """Password reset token model."""
-
-    __tablename__ = "password_reset_tokens"
-
-    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    user_id: Mapped[int] = mapped_column(
-        Integer, 
-        ForeignKey("users.id", ondelete="CASCADE"), 
-        nullable=False,
-        index=True
-    )
-    token_hash: Mapped[str] = mapped_column(String(255), unique=True, nullable=False, index=True)
-    expires_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, index=True)
-    created_at: Mapped[datetime] = mapped_column(
-        DateTime, 
-        server_default=func.now(), 
-        nullable=False
-    )
-    used: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
-
-    # Relationships
-    user: Mapped["User"] = relationship("User", back_populates="password_resets")
-
-    def __repr__(self) -> str:
-        return f"<PasswordResetToken(id={self.id}, user_id={self.user_id}, used={self.used})>"
 
 
 class SavedItinerary(Base):

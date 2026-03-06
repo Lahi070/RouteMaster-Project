@@ -20,6 +20,8 @@ class RegisterRequest(BaseModel):
     username: str = Field(..., min_length=3, max_length=50)
     password: str = Field(..., min_length=8, max_length=100)
     full_name: str | None = Field(None, max_length=255)
+    security_question: str = Field(..., min_length=5, max_length=255)
+    security_answer: str = Field(..., min_length=1, max_length=255)
 
 
 class LoginRequest(BaseModel):
@@ -55,14 +57,15 @@ class ChangePasswordRequest(BaseModel):
     new_password: str = Field(..., min_length=8, max_length=100, alias="newPassword")
 
 
-class ForgotPasswordRequest(BaseModel):
-    """Request to initiate password reset."""
+class SecurityQuestionResponse(BaseModel):
+    """Response containing the user's security question."""
     
-    email: EmailStr
+    question: str
 
 
-class ResetPasswordRequest(BaseModel):
-    """Request to set a new password using a reset token."""
+class ResetPasswordSecurityRequest(BaseModel):
+    """Request to set a new password using a security question answer."""
     
-    token: str
+    username: str
+    security_answer: str = Field(..., alias="securityAnswer")
     new_password: str = Field(..., min_length=8, max_length=100, alias="newPassword")

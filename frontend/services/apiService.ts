@@ -11,8 +11,8 @@ import {
   TravelRecommendation,
   CausalRecommendRequest,
   CausalRecommendResponse,
-  ForgotPasswordRequest,
-  ResetPasswordRequest,
+  SecurityQuestionResponse,
+  ResetPasswordSecurityRequest,
 } from "../types";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || process.env.API_BASE_URL || "http://localhost:8001";
@@ -187,23 +187,21 @@ export const authAPI = {
     return transformUser(data);
   },
 
-  forgotPassword: async (data: ForgotPasswordRequest): Promise<{ message: string }> => {
-    const response = await fetch(`${API_BASE_URL}/auth/forgot-password`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+  getSecurityQuestion: async (username: string): Promise<SecurityQuestionResponse> => {
+    const response = await fetch(`${API_BASE_URL}/auth/security-question/${encodeURIComponent(username)}`, {
+      method: "GET",
     });
 
     if (!response.ok) {
       const error = await response.json();
-      throw new Error(error.detail || "Forgot password request failed");
+      throw new Error(error.detail || "Failed to get security question");
     }
 
     return response.json();
   },
 
-  resetPassword: async (data: ResetPasswordRequest): Promise<{ message: string }> => {
-    const response = await fetch(`${API_BASE_URL}/auth/reset-password`, {
+  resetPasswordSecurity: async (data: ResetPasswordSecurityRequest): Promise<{ message: string }> => {
+    const response = await fetch(`${API_BASE_URL}/auth/reset-password-security`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -211,7 +209,7 @@ export const authAPI = {
 
     if (!response.ok) {
       const error = await response.json();
-      throw new Error(error.detail || "Reset password request failed");
+      throw new Error(error.detail || "Password reset failed");
     }
 
     return response.json();

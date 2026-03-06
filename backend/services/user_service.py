@@ -34,6 +34,8 @@ class UserService:
         email: str,
         username: str,
         password: str,
+        security_question: str,
+        security_answer: str,
         full_name: Optional[str] = None,
     ) -> User:
         """
@@ -44,6 +46,8 @@ class UserService:
             email: User email
             username: Username
             password: Plain text password
+            security_question: User's chosen security question
+            security_answer: Hashed security answer
             full_name: User's full name
         
         Returns:
@@ -66,6 +70,8 @@ class UserService:
             username=username,
             password_hash=hash_password(password),
             full_name=full_name,
+            security_question=security_question,
+            security_answer=security_answer,
             role="user",
         )
         

@@ -20,7 +20,6 @@ from services.token_service import TokenService
 from services.user_service import UserService
 from services.email_service import EmailService
 import secrets
-from database.models import PasswordResetToken
 
 
 class AuthService:
@@ -32,6 +31,8 @@ class AuthService:
         email: str,
         username: str,
         password: str,
+        security_question: str,
+        security_answer: str,
         full_name: Optional[str] = None,
         ip_address: Optional[str] = None,
         user_agent: Optional[str] = None,
@@ -44,6 +45,8 @@ class AuthService:
             email: User email
             username: Username
             password: Plain text password
+            security_question: User's chosen security question
+            security_answer: User's answer to the security question
             full_name: User's full name
             ip_address: User's IP address
             user_agent: User's browser/client info
@@ -51,8 +54,11 @@ class AuthService:
         Returns:
             Tuple of (User, Tokens)
         """
+        # Hash security answer using the same logic as password
+        hashed_answer = hash_password(security_answer.strip().lower())
+
         # Create user
-        user = UserService.create_user(db, email, username, password, full_name)
+        user = UserService.create_user(db, email, username, password, security_question, hashed_answer, full_name)
         
         # Log activity
         UserService.log_activity(db, user.id, "register", ip_address, user_agent)
@@ -220,58 +226,36 @@ class AuthService:
         return count
     
     @staticmethod
-    def forgot_password(db: Session, email: str) -> bool:
-        """Generate and send password reset token."""
-        user = UserService.get_by_email(db, email)
+    def get_security_question(db: Session, username: str) -> str:
+        """Fetch the user's security question."""
+        user = UserService.get_by_username(db, username)
         if not user or not user.is_active:
-            # Return true to prevent email enumeration
-            return True
+            raise AuthenticationError("User not found or inactive")
             
-        token_plain = secrets.token_urlsafe(32)
-        token_hash = hash_password(token_plain)
-        expires_at = datetime.utcnow() + timedelta(hours=1)
-        
-        reset_token = PasswordResetToken(
-            user_id=user.id,
-            token_hash=token_hash,
-            expires_at=expires_at
-        )
-        db.add(reset_token)
-        db.commit()
-        
-        EmailService.send_password_reset_email(email, token_plain)
-        UserService.log_activity(db, user.id, "password_reset_requested")
-        return True
+        if not user.security_question:
+            raise AuthenticationError("User does not have a security question set")
+            
+        return user.security_question
 
     @staticmethod
-    def reset_password(db: Session, token: str, new_password: str) -> bool:
-        """Reset password using token."""
-        # Find all unexpired, unused tokens
-        valid_tokens = db.query(PasswordResetToken).filter(
-            PasswordResetToken.used == False,
-            PasswordResetToken.expires_at > datetime.utcnow()
-        ).all()
-        
-        matched_token = None
-        for t in valid_tokens:
-            if verify_password(token, t.token_hash):
-                matched_token = t
-                break
-                
-        if not matched_token:
-            raise AuthenticationError("Invalid or expired password reset token")
-            
-        user = UserService.get_by_id(db, matched_token.user_id)
+    def reset_password_security(db: Session, username: str, security_answer: str, new_password: str) -> bool:
+        """Reset password using a security question answer."""
+        user = UserService.get_by_username(db, username)
         if not user or not user.is_active:
             raise AuthenticationError("Invalid user account")
             
+        # Verify the security answer
+        # Normalizing answer to lower and stripping whitespace for robustness
+        normalized_answer = security_answer.strip().lower()
+        if not verify_password(normalized_answer, user.security_answer):
+            raise AuthenticationError("Incorrect security answer")
+            
         # Update password
         user.password_hash = hash_password(new_password)
-        matched_token.used = True
         
         # Revoke all active sessions
         TokenService.revoke_all_user_tokens(db, user.id)
         
         db.commit()
-        UserService.log_activity(db, user.id, "password_reset_completed")
+        UserService.log_activity(db, user.id, "password_reset_security_completed")
         return True

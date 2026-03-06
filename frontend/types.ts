@@ -21,6 +21,8 @@ export interface RegisterRequest {
   email: string;
   username: string;
   password: string;
+  security_question: string;
+  security_answer: string;
   fullName?: string;
   profilePicture?: string;
 }
@@ -36,12 +38,13 @@ export interface ChangePasswordRequest {
   newPassword: string;
 }
 
-export interface ForgotPasswordRequest {
-  email: string;
+export interface SecurityQuestionResponse {
+  question: string;
 }
 
-export interface ResetPasswordRequest {
-  token: string;
+export interface ResetPasswordSecurityRequest {
+  username: string;
+  securityAnswer: string;
   newPassword: string;
 }
 
