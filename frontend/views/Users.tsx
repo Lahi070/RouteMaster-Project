@@ -152,6 +152,9 @@ const Users: React.FC = () => {
                   <th className="px-6 py-4 text-left text-xs font-bold text-white uppercase tracking-wider">
                     Last Login
                   </th>
+                  <th className="px-6 py-4 text-right text-xs font-bold text-white uppercase tracking-wider">
+                    Actions
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
@@ -183,11 +186,10 @@ const Users: React.FC = () => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span
-                        className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
-                          user.role === "admin"
-                            ? "bg-purple-100 text-purple-700"
-                            : "bg-blue-100 text-blue-700"
-                        }`}
+                        className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${user.role === "admin"
+                          ? "bg-purple-100 text-purple-700"
+                          : "bg-blue-100 text-blue-700"
+                          }`}
                       >
                         {user.role === "admin" && <Shield size={12} />}
                         {user.role}
@@ -197,6 +199,26 @@ const Users: React.FC = () => {
                       <span className="text-sm text-gray-600">
                         {formatDate(user.lastLogin)}
                       </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-right">
+                      {user.role !== "admin" && (
+                        <button
+                          onClick={async () => {
+                            if (window.confirm("Are you sure you want to delete this user? This action cannot be undone.")) {
+                              try {
+                                await adminUserAPI.delete(user.id);
+                                fetchUsers(); // Refresh the list
+                              } catch (err: any) {
+                                alert(err.message || "Failed to delete user");
+                              }
+                            }
+                          }}
+                          className="text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 p-2 rounded-lg transition-colors inline-block"
+                          title="Delete User"
+                        >
+                          Delete
+                        </button>
+                      )}
                     </td>
                   </motion.tr>
                 ))}

@@ -4,6 +4,7 @@ export interface User {
   email: string;
   username: string;
   fullName: string | null;
+  profilePicture?: string | null;
   role: "user" | "admin";
   isActive: boolean;
   isVerified: boolean;
@@ -21,6 +22,7 @@ export interface RegisterRequest {
   username: string;
   password: string;
   fullName?: string;
+  profilePicture?: string;
 }
 
 export interface AuthResponse {
@@ -31,6 +33,15 @@ export interface AuthResponse {
 
 export interface ChangePasswordRequest {
   currentPassword: string;
+  newPassword: string;
+}
+
+export interface ForgotPasswordRequest {
+  email: string;
+}
+
+export interface ResetPasswordRequest {
+  token: string;
   newPassword: string;
 }
 

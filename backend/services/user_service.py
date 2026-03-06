@@ -123,7 +123,31 @@ class UserService:
         db.refresh(db_user)
         
         return db_user
-    
+
+    @staticmethod
+    def upload_profile_picture(db: Session, user_id: int, file_path: str) -> User:
+        """Update user with a new profile picture."""
+        db_user = UserService.get_by_id(db, user_id)
+        if not db_user:
+            raise NotFoundError("User not found")
+            
+        db_user.profile_picture = file_path
+        db.commit()
+        db.refresh(db_user)
+        return db_user
+        
+    @staticmethod
+    def delete_profile_picture(db: Session, user_id: int) -> User:
+        """Remove user profile picture from database."""
+        db_user = UserService.get_by_id(db, user_id)
+        if not db_user:
+            raise NotFoundError("User not found")
+            
+        db_user.profile_picture = None
+        db.commit()
+        db.refresh(db_user)
+        return db_user
+
     @staticmethod
     def delete_user(db: Session, user_id: int) -> bool:
         """Delete a user."""

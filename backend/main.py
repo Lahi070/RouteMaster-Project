@@ -2,6 +2,8 @@
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+import os
 
 from api.routes import admin_users, auth, locations, recommendations, users
 from api.routes.recommendations import causal_router
@@ -15,6 +17,12 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc",
 )
+
+# Ensure upload directory exists
+os.makedirs("uploads/profiles", exist_ok=True)
+
+# Mount static files for uploads
+app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
 # Configure CORS middleware
 app.add_middleware(

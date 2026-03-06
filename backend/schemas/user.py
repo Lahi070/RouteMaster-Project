@@ -22,6 +22,7 @@ class UserResponse(UserBase):
     role: str
     is_active: bool = Field(..., alias="isActive")
     is_verified: bool = Field(..., alias="isVerified")
+    profile_picture: str | None = Field(None, alias="profilePicture")
     created_at: datetime = Field(..., alias="createdAt")
     last_login: datetime | None = Field(None, alias="lastLogin")
 

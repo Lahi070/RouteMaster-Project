@@ -13,6 +13,8 @@ from schemas.auth import (
     RefreshTokenRequest,
     RegisterRequest,
     TokenResponse,
+    ForgotPasswordRequest,
+    ResetPasswordRequest,
 )
 from schemas.common import MessageResponse
 from schemas.user import UserResponse
@@ -241,3 +243,26 @@ async def get_current_user_info(
     Requires authentication (access token in Authorization header).
     """
     return UserResponse.model_validate(current_user)
+
+@router.post("/forgot-password", response_model=MessageResponse)
+async def forgot_password(
+    data: ForgotPasswordRequest,
+    db: Session = Depends(get_db),
+):
+    """
+    Request a password reset link to be sent to the email.
+    Always returns success to prevent email enumeration.
+    """
+    AuthService.forgot_password(db, data.email)
+    return MessageResponse(message="If an account exists with that email, a password reset link has been sent.")
+
+@router.post("/reset-password", response_model=MessageResponse)
+async def reset_password(
+    data: ResetPasswordRequest,
+    db: Session = Depends(get_db),
+):
+    """
+    Reset password using the token from the email.
+    """
+    AuthService.reset_password(db, data.token, data.new_password)
+    return MessageResponse(message="Password has been reset successfully. You can now log in.")

@@ -70,9 +70,18 @@ const Navbar: React.FC = () => {
           </div>
 
           <div className="flex items-center space-x-4">
-            <span className="text-sm text-gray-600 hidden md:block">
-              {user?.username}
-            </span>
+            <Link to="/profile" className="flex items-center space-x-2 group">
+              <span className="text-sm font-medium text-gray-700 group-hover:text-[#004E89] hidden md:block transition-colors">
+                {user?.username}
+              </span>
+              <div className="w-8 h-8 rounded-full border-2 border-transparent group-hover:border-[#FF6B35] transition-colors overflow-hidden">
+                <img
+                  src={user?.profilePicture ? `${import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"}${user.profilePicture}` : "https://picsum.photos/seed/user123/200/200"}
+                  alt={user?.username}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </Link>
             <motion.button
               whileHover={{ scale: 1.1 }}
               onClick={handleLogout}

@@ -139,12 +139,12 @@ const Login: React.FC = () => {
               }
             />
             <div className="text-right">
-              <button
-                type="button"
+              <Link
+                to="/forgot-password"
                 className="text-xs text-[#FF6B35] font-bold hover:underline"
               >
                 Forgot password?
-              </button>
+              </Link>
             </div>
           </div>
 

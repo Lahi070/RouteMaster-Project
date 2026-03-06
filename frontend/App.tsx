@@ -11,6 +11,8 @@ import Navbar from "./components/Navbar";
 import Landing from "./views/Landing";
 import Login from "./views/Login";
 import Register from "./views/Register";
+import ForgotPassword from "./views/ForgotPassword";
+import ResetPassword from "./views/ResetPassword";
 import Preferences from "./views/Preferences";
 import Recommendations from "./views/Recommendations";
 import RouteMap from "./views/RouteMap";
@@ -34,6 +36,8 @@ const App: React.FC = () => {
               <Route path="/" element={<Landing />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/terms" element={<Terms />} />
               <Route
                 path="/preferences"

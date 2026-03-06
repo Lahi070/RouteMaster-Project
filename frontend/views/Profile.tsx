@@ -24,7 +24,7 @@ import { userAPI, authAPI } from "../services/apiService";
 import { UserPreferenceResponse, SavedItineraryResponse } from "../types";
 
 const Profile: React.FC = () => {
-  const { user: authUser, logout } = useAuth();
+  const { user: authUser, logout, updateUser } = useAuth();
   const [user, setUser] = useState(authUser);
   const [preferences, setPreferences] = useState<UserPreferenceResponse | null>(
     null,
@@ -46,6 +46,10 @@ const Profile: React.FC = () => {
   const [savingProfile, setSavingProfile] = useState(false);
   const [profileError, setProfileError] = useState<string | null>(null);
 
+  // Profile picture states
+  const [uploadingPicture, setUploadingPicture] = useState(false);
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+
   // Change password states
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [passwordData, setPasswordData] = useState({
@@ -53,6 +57,9 @@ const Profile: React.FC = () => {
     newPassword: "",
     confirmPassword: "",
   });
+
+  // Delete account states
+  const [deletingAccount, setDeletingAccount] = useState(false);
 
   const handleEditProfile = () => {
     setIsEditingProfile(true);
@@ -87,6 +94,46 @@ const Profile: React.FC = () => {
       );
     } finally {
       setSavingProfile(false);
+    }
+  };
+
+  const handleProfilePictureUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    try {
+      setUploadingPicture(true);
+      setProfileError(null);
+      const updatedUser = await userAPI.uploadProfilePicture(file);
+      setUser(updatedUser);
+      if (authUser?.id === updatedUser.id) {
+        updateUser(updatedUser);
+      }
+    } catch (error: any) {
+      console.error("Failed to upload picture:", error);
+      setProfileError(error.message || "Failed to upload picture");
+    } finally {
+      setUploadingPicture(false);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = ""; // clear input
+      }
+    }
+  };
+
+  const handleDeleteProfilePicture = async () => {
+    try {
+      setUploadingPicture(true);
+      setProfileError(null);
+      const updatedUser = await userAPI.deleteProfilePicture();
+      setUser(updatedUser);
+      if (authUser?.id === updatedUser.id) {
+        updateUser(updatedUser);
+      }
+    } catch (error: any) {
+      console.error("Failed to delete picture:", error);
+      setProfileError(error.message || "Failed to delete picture");
+    } finally {
+      setUploadingPicture(false);
     }
   };
 
@@ -185,6 +232,23 @@ const Profile: React.FC = () => {
     navigate("/login");
   };
 
+  const handleDeleteAccount = async () => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete your account? This action cannot be undone."
+    );
+    if (!confirmed) return;
+
+    try {
+      setDeletingAccount(true);
+      await userAPI.deleteAccount();
+      await logout(); // Ensures context is cleared and user is sent to login
+    } catch (error: any) {
+      console.error("Failed to delete account:", error);
+      alert(error.message || "Failed to delete account");
+      setDeletingAccount(false);
+    }
+  };
+
   const handleDeleteItinerary = async (id: number) => {
     try {
       await userAPI.deleteItinerary(id);
@@ -204,20 +268,57 @@ const Profile: React.FC = () => {
 
   const prefStyles = preferences?.preferredTravelStyles?.styles || [];
 
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+  const userImageUrl = user?.profilePicture
+    ? `${API_BASE_URL}${user.profilePicture}`
+    : "https://picsum.photos/seed/user123/200/200";
+
   return (
     <div className="min-h-screen pt-28 pb-20 px-6 max-w-5xl mx-auto">
       <header className="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-12 mb-16">
-        <div className="relative">
-          <div className="w-40 h-40 rounded-full border-4 border-[#FF6B35] p-1 shadow-2xl">
+        <div className="relative group">
+          <div className={`w-40 h-40 rounded-full border-4 border-[#FF6B35] p-1 shadow-2xl overflow-hidden ${uploadingPicture ? 'opacity-50' : ''}`}>
             <img
-              src="https://picsum.photos/seed/user123/200/200"
+              src={userImageUrl}
               className="w-full h-full rounded-full object-cover"
               alt="Profile"
             />
+            {uploadingPicture && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Loader className="animate-spin text-[#FF6B35]" size={32} />
+              </div>
+            )}
           </div>
-          <button className="absolute bottom-2 right-2 p-2 bg-white rounded-full shadow-lg text-[#004E89] border border-gray-100">
-            <Edit2 size={16} />
-          </button>
+
+          {/* Hidden file input */}
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={handleProfilePictureUpload}
+            accept="image/*"
+            className="hidden"
+          />
+
+          <div className="absolute -bottom-2 flex w-full justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              disabled={uploadingPicture}
+              className="p-2 bg-white rounded-full shadow-lg text-[#004E89] border border-gray-100 hover:bg-gray-50"
+              title="Upload new picture"
+            >
+              <Edit2 size={16} />
+            </button>
+            {user?.profilePicture && (
+              <button
+                onClick={handleDeleteProfilePicture}
+                disabled={uploadingPicture}
+                className="p-2 bg-white rounded-full shadow-lg text-red-500 border border-gray-100 hover:bg-red-50"
+                title="Remove picture"
+              >
+                <Trash2 size={16} />
+              </button>
+            )}
+          </div>
         </div>
 
         <div className="text-center md:text-left">
@@ -496,27 +597,27 @@ const Profile: React.FC = () => {
                   )}
                   {(preferences?.preferredStartLocation ||
                     preferences?.preferredBudgetRange) && (
-                    <div className="flex flex-wrap gap-4 pt-2">
-                      {preferences.preferredStartLocation && (
-                        <div className="flex items-center text-sm text-gray-500">
-                          <MapPin size={14} className="mr-1.5 text-[#FF6B35]" />
-                          {preferences.preferredStartLocation}
-                        </div>
-                      )}
-                      {preferences.preferredBudgetRange && (
-                        <div className="flex items-center text-sm text-gray-500">
-                          <span className="mr-1.5 text-[#FF6B35] font-bold text-xs">
-                            Rs
-                          </span>
-                          {preferences.preferredBudgetRange
-                            .charAt(0)
-                            .toUpperCase() +
-                            preferences.preferredBudgetRange.slice(1)}{" "}
-                          budget
-                        </div>
-                      )}
-                    </div>
-                  )}
+                      <div className="flex flex-wrap gap-4 pt-2">
+                        {preferences.preferredStartLocation && (
+                          <div className="flex items-center text-sm text-gray-500">
+                            <MapPin size={14} className="mr-1.5 text-[#FF6B35]" />
+                            {preferences.preferredStartLocation}
+                          </div>
+                        )}
+                        {preferences.preferredBudgetRange && (
+                          <div className="flex items-center text-sm text-gray-500">
+                            <span className="mr-1.5 text-[#FF6B35] font-bold text-xs">
+                              Rs
+                            </span>
+                            {preferences.preferredBudgetRange
+                              .charAt(0)
+                              .toUpperCase() +
+                              preferences.preferredBudgetRange.slice(1)}{" "}
+                            budget
+                          </div>
+                        )}
+                      </div>
+                    )}
                 </div>
               )}
             </section>
@@ -532,8 +633,12 @@ const Profile: React.FC = () => {
               <SettingItem icon={<Bell size={18} />} label="Notifications" />
               <SettingItem icon={<Shield size={18} />} label="Privacy & Data" />
               <div className="pt-4 mt-4 border-t border-gray-50">
-                <button className="text-red-500 font-bold text-sm hover:underline">
-                  Delete Account
+                <button
+                  onClick={handleDeleteAccount}
+                  disabled={deletingAccount}
+                  className="text-red-500 font-bold text-sm hover:underline disabled:opacity-50"
+                >
+                  {deletingAccount ? "Deleting..." : "Delete Account"}
                 </button>
               </div>
             </div>

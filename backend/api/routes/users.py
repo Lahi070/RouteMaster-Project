@@ -1,7 +1,10 @@
 """User routes."""
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, UploadFile, File, BackgroundTasks, HTTPException
 from sqlalchemy.orm import Session
+import os
+import shutil
+import time
 
 from api.deps import get_current_user
 from core.exceptions import NotFoundError
@@ -74,6 +77,67 @@ async def delete_my_account(
     UserService.delete_user(db, current_user.id)
     
     return MessageResponse(message="Account deleted successfully")
+
+@router.post("/me/profile-picture", response_model=UserResponse)
+async def upload_profile_picture(
+    file: UploadFile = File(...),
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """
+    Upload a new profile picture.
+    """
+    if not file.content_type.startswith("image/"):
+        raise HTTPException(status_code=400, detail="File must be an image")
+
+    # Generate unique filename
+    ext = file.filename.split(".")[-1] if "." in file.filename else "jpg"
+    filename = f"user_{current_user.id}_{int(time.time())}.{ext}"
+    
+    # Ensure directory exists
+    os.makedirs("uploads/profiles", exist_ok=True)
+    file_path = os.path.join("uploads/profiles", filename)
+    
+    # Save file
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+        
+    # Delete old picture if it exists
+    if current_user.profile_picture and os.path.exists(current_user.profile_picture):
+        try:
+            os.remove(current_user.profile_picture)
+        except Exception:
+            pass
+            
+    # Update database directly with relative path
+    updated_user = UserService.upload_profile_picture(
+        db, current_user.id, f"/uploads/profiles/{filename}"
+    )
+    
+    return UserResponse.model_validate(updated_user)
+
+@router.delete("/me/profile-picture", response_model=UserResponse)
+async def delete_profile_picture(
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """
+    Delete current profile picture.
+    """
+    if not current_user.profile_picture:
+        raise HTTPException(status_code=400, detail="No profile picture to delete")
+        
+    # Extract local path from URL or use as is
+    file_path = current_user.profile_picture.lstrip("/")
+    
+    if os.path.exists(file_path):
+        try:
+            os.remove(file_path)
+        except Exception:
+            pass
+            
+    updated_user = UserService.delete_profile_picture(db, current_user.id)
+    return UserResponse.model_validate(updated_user)
 
 
 # Preferences

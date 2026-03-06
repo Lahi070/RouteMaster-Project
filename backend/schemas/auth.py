@@ -53,3 +53,16 @@ class ChangePasswordRequest(BaseModel):
     
     current_password: str = Field(..., alias="currentPassword")
     new_password: str = Field(..., min_length=8, max_length=100, alias="newPassword")
+
+
+class ForgotPasswordRequest(BaseModel):
+    """Request to initiate password reset."""
+    
+    email: EmailStr
+
+
+class ResetPasswordRequest(BaseModel):
+    """Request to set a new password using a reset token."""
+    
+    token: str
+    new_password: str = Field(..., min_length=8, max_length=100, alias="newPassword")

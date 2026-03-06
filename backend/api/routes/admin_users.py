@@ -2,13 +2,16 @@
 
 from typing import Optional
 
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy.orm import Session
 
 from api.deps import require_admin
 from database import get_db
 from database.models import User
 from schemas.user import UserResponse
+from schemas.common import MessageResponse
+from services.user_service import UserService
+from core.exceptions import NotFoundError
 
 router = APIRouter(prefix="/admin/users", tags=["Admin - Users"])
 
@@ -40,3 +43,21 @@ async def get_all_users(
     users = query.order_by(User.id).offset(skip).limit(limit).all()
     
     return [UserResponse.model_validate(user) for user in users]
+
+@router.delete("/{user_id}", response_model=MessageResponse)
+async def delete_user(
+    user_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_admin),
+):
+    """
+    Delete a user by ID (Admin only).
+    """
+    if user_id == current_user.id:
+        raise HTTPException(status_code=400, detail="Cannot delete your own admin account from here. Use your profile.")
+        
+    deleted = UserService.delete_user(db, user_id)
+    if not deleted:
+        raise NotFoundError("User not found")
+        
+    return MessageResponse(message="User deleted successfully")

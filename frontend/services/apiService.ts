@@ -11,9 +11,11 @@ import {
   TravelRecommendation,
   CausalRecommendRequest,
   CausalRecommendResponse,
+  ForgotPasswordRequest,
+  ResetPasswordRequest,
 } from "../types";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || process.env.API_BASE_URL || "http://localhost:8000";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || process.env.API_BASE_URL || "http://localhost:8001";
 
 // Token management
 let accessToken: string | null = localStorage.getItem("accessToken");
@@ -184,6 +186,36 @@ export const authAPI = {
     const data = await response.json();
     return transformUser(data);
   },
+
+  forgotPassword: async (data: ForgotPasswordRequest): Promise<{ message: string }> => {
+    const response = await fetch(`${API_BASE_URL}/auth/forgot-password`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.detail || "Forgot password request failed");
+    }
+
+    return response.json();
+  },
+
+  resetPassword: async (data: ResetPasswordRequest): Promise<{ message: string }> => {
+    const response = await fetch(`${API_BASE_URL}/auth/reset-password`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.detail || "Reset password request failed");
+    }
+
+    return response.json();
+  },
 };
 
 // User APIs
@@ -209,6 +241,46 @@ export const userAPI = {
     if (!response.ok) {
       const error = await response.json();
       throw new Error(error.detail || "Profile update failed");
+    }
+
+    const responseData = await response.json();
+    return transformUser(responseData);
+  },
+
+  uploadProfilePicture: async (file: File): Promise<User> => {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    // Using fetch directly because we need multipart/form-data
+    const headers: Record<string, string> = {};
+    if (accessToken) {
+      headers["Authorization"] = `Bearer ${accessToken}`;
+    }
+
+    const response = await fetch(`${API_BASE_URL}/users/me/profile-picture`, {
+      method: "POST",
+      headers,
+      body: formData,
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({}));
+      throw new Error(error.detail || "Profile picture upload failed");
+    }
+
+    const responseData = await response.json();
+    return transformUser(responseData);
+  },
+
+  deleteProfilePicture: async (): Promise<User> => {
+    const response = await apiClient(`${API_BASE_URL}/users/me/profile-picture`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({}));
+      throw new Error(error.detail || "Profile picture deletion failed");
     }
 
     const responseData = await response.json();
@@ -541,6 +613,19 @@ export const adminUserAPI = {
     if (!response.ok) {
       const error = await response.json();
       throw new Error(error.detail || "Failed to fetch users");
+    }
+
+    return response.json();
+  },
+
+  delete: async (id: number): Promise<{ message: string }> => {
+    const response = await apiClient(`${API_BASE_URL}/admin/users/${id}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({}));
+      throw new Error(error.detail || "Failed to delete user");
     }
 
     return response.json();
