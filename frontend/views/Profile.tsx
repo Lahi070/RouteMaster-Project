@@ -268,7 +268,7 @@ const Profile: React.FC = () => {
 
   const prefStyles = preferences?.preferredTravelStyles?.styles || [];
 
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8001";
   const userImageUrl = user?.profilePicture
     ? `${API_BASE_URL}${user.profilePicture}`
     : "https://picsum.photos/seed/user123/200/200";
@@ -630,8 +630,9 @@ const Profile: React.FC = () => {
               <Settings className="mr-3 text-gray-400" /> Settings
             </h3>
             <div className="space-y-4">
-              <SettingItem icon={<Bell size={18} />} label="Notifications" />
-              <SettingItem icon={<Shield size={18} />} label="Privacy & Data" />
+              <SettingItem icon={<Settings size={18} />} label="Account Settings" to="/settings" />
+              <SettingItem icon={<Bell size={18} />} label="Notifications" to="/notifications" />
+              <SettingItem icon={<Shield size={18} />} label="Privacy & Data" to="/privacy" />
               <div className="pt-4 mt-4 border-t border-gray-50">
                 <button
                   onClick={handleDeleteAccount}
@@ -644,16 +645,7 @@ const Profile: React.FC = () => {
             </div>
           </section>
 
-          <div className="bg-[#004E89] p-8 rounded-3xl shadow-xl text-white text-center">
-            <p className="text-sm font-bold text-white/60 mb-2 uppercase tracking-widest">
-              Total Heritage Points
-            </p>
-            <p className="text-5xl font-extrabold mb-4">4,250</p>
-            <p className="text-xs text-white/70 italic">
-              "You are 750 points away from unlocking the Cultural Ambassador
-              badge!"
-            </p>
-          </div>
+
         </div>
       </div>
 
@@ -782,17 +774,21 @@ const Profile: React.FC = () => {
   );
 };
 
-const SettingItem: React.FC<{ icon: React.ReactNode; label: string }> = ({
+const SettingItem: React.FC<{ icon: React.ReactNode; label: string; to: string }> = ({
   icon,
   label,
+  to,
 }) => (
-  <div className="flex items-center justify-between py-2 cursor-pointer group">
+  <Link
+    to={to}
+    className="flex items-center justify-between py-2 cursor-pointer group"
+  >
     <div className="flex items-center space-x-3 text-gray-600 group-hover:text-[#004E89] transition-colors">
       {icon}
       <span className="font-medium">{label}</span>
     </div>
-    <ChevronRight size={16} className="text-gray-300" />
-  </div>
+    <ChevronRight size={16} className="text-gray-300 group-hover:text-[#004E89] transiton-colors" />
+  </Link>
 );
 
 export default Profile;

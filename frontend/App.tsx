@@ -23,6 +23,9 @@ import Locations from "./views/Locations";
 import Users from "./views/Users";
 import Terms from "./views/Terms";
 import CausalRecommend from "./views/CausalRecommend";
+import AccountSettings from "./views/AccountSettings";
+import Notifications from "./views/Notifications";
+import PrivacyData from "./views/PrivacyData";
 
 
 const App: React.FC = () => {
@@ -108,6 +111,30 @@ const App: React.FC = () => {
                 element={
                   <ProtectedRoute>
                     <CausalRecommend />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/settings"
+                element={
+                  <ProtectedRoute>
+                    <AccountSettings />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/notifications"
+                element={
+                  <ProtectedRoute>
+                    <Notifications />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/privacy"
+                element={
+                  <ProtectedRoute>
+                    <PrivacyData />
                   </ProtectedRoute>
                 }
               />
